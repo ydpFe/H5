@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="x5-page-mode" content="app">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="layoutmode" content="standard">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-title" content="">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title></title>
+    <script type="text/javascript" src="./js/access.js"></script>
+    <style type="text/css" media="screen">
+        body,
+        div,
+        dl,
+        dt,
+        dd,
+        ul,
+        ol,
+        li,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        pre,
+        code,
+        form,
+        fieldset,
+        legend,
+        input,
+        textarea,
+        p,
+        aside,
+        blockquote,
+        th,
+        td,
+        span,
+        i,
+        b,
+        img {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+        }
+        
+        html,
+        body {
+            min-height: 100%;
+            width: 100%;
+        }
+        
+        html {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -o-user-select: none;
+            user-select: none;
+        }
+        
+        body {
+            position: relative;
+            -webkit-text-size-adjust: 100%;
+        }
+        
+        :focus {
+            outline: 0;
+            box-shadow: none
+        }
+        
+        a,
+        input,
+        select,
+        textarea,
+        button {
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+        
+        a {
+            text-decoration: none;
+            outline: none;
+            font-weight: normal;
+            border: 0;
+        }
+        
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+        
+        ol,
+        ul,
+        li {
+            list-style: none;
+            vertical-align: middle;
+        }
+        
+        input,
+        textarea {
+            outline: none;
+            -webkit-appearance: none;
+            resize: none;
+        }
+        
+        img,
+        button,
+        input,
+        textarea {
+            border: none;
+        }
+        
+        @media screen and ( min-width: 320px) and ( max-width: 359px) {
+            html {
+                font-size: 14px;
+            }
+        }
+        
+        @media screen and ( min-width: 360px) and ( max-width: 374px) {
+            html {
+                font-size: 13px;
+            }
+        }
+        
+        @media screen and ( min-width: 375px) and ( max-width: 479px) {
+            html {
+                font-size: 15px;
+            }
+        }
+        
+        @media screen and ( min-width: 480px) and ( max-width: 539px) {
+            html {
+                font-size: 17px;
+            }
+        }
+        
+        @media screen and ( min-width: 540px) and ( max-width: 639px) {
+            html {
+                font-size: 19px;
+            }
+        }
+        
+        @media screen and ( min-width: 640px) {
+            html {
+                font-size: 24px;
+            }
+        }
+        
+        .m-row {
+            display: table;
+            width: 100%;
+            background: #fff;
+        }
+        
+        .m-row:before {
+            content: '';
+            display: table-row;
+            width: 100%;
+        }
+        
+        .m-row .m-cell {
+            display: table-cell;
+            vertical-align: middle;
+        }
+        
+        .m-row .m-cell.m-cell-top {
+            vertical-align: top;
+        }
+        
+        .float-order-btn {
+            display: block;
+            width: 100%;
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            height: 4.6rem;
+            line-height: 3.27rem;
+            font-size: 1.2rem;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        
+        .float-order-btn img {
+            display: block;
+            width: 100%;
+        }
+    </style>
+    <style type="text/css" media="screen">
+        body {
+            background-color: #f7f7f7;
+            color: #5f5f5f;
+            font-family: '微软雅黑', 'PingFang cs'
+        }
+        img{
+            width:100%;
+        }
+        #content {
+            margin-top: 2rem;
+            padding: 0 2rem 0rem 2rem;
+            background-color: #ffffff;
+            border-top: 0.1rem solid #dddddd;
+            /*border-bottom: 0.1rem solid #dddddd;*/
+        }
+        .card-top {
+            border-bottom: 0.1rem solid #dddddd;
+            line-height: 4rem;
+        }
+        .hide {
+            transform: rotate(-135deg);
+            float: right;
+            margin-right: 1.3rem;
+            margin-top: 1.3rem;
+            display: inline-block;
+            width: 0.8rem;
+            height: 0.8rem;
+            border-top: 0.2rem solid #888888;
+            border-left: 0.2rem solid #888888;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="content">
+    </div>
+    <script type="text/javascript" src="./js/ajax.js?v=20160920"></script>
+    <script type="text/javascript">
+        "use strict";
+
+        //参数
+        var host = 'https://192.168.30.1:8084';//测试地址
+        var host = getHost();
+        var urlList = '/logistics/carlist';
+        var url = '/logistics/acceptance';
+        // var name = getQueryString('account');
+        var token = getQueryString('token');
+        var orderId = getQueryString('orderId');
+
+        //设置host
+        function getHost(){
+            var oldUrl = document.domain;
+            var num = oldUrl.lastIndexOf('.');
+            var newUrl = oldUrl.substring(num+1,oldUrl.length);
+            if(newUrl == 'com'){
+                var host="https://api.cyb.kuaiqiangche.com";
+            }else{
+                var host="https://api.cyb.kuaiqiangche.cc";
+            }
+            return host;
+        }
+
+        //获取url参数
+        function getQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]); return null;
+        }
+
+        //获取节点
+        var content = document.getElementById('content');
+
+        // 列表模板
+        function Card(name) {
+            var _template = "<div class=\"card-top\"><span>" + name + "</span><span class=\"hide\"></span></div><div style=\"padding:1rem;display:none\"></div>";
+            var _node = document.createElement("div");
+            _node.className = 'card';
+            _node.innerHTML = _template;
+            return _node;
+        }
+
+        // 获取图片
+        function getImg(node, id) {
+            // 获取列表数据
+            ajax({
+                url: host + url + '?token=' + token + '&expressOrderId=' + id,
+                type:"GET",
+                dataType:"json",
+                success: function (res, xml) {
+                    var data = res.data.vins[0].images;
+                    data.forEach(function(e) {
+                        var _node = document.createElement("img");
+                        _node.src = e.url;
+                        node.appendChild(_node);
+                        node.style.display = "block";
+                    })
+                },
+                fail: function (status) {
+                }
+            })
+        }
+
+        // 获取列表数据
+        ajax({
+            url: host + urlList + '?token=' + token + '&orderId=' + orderId,
+            type:"GET",
+            dataType:"json",
+            success: function (res, xml) {
+                res.data.orderItems.forEach(function(e){
+                    var _node = new Card(e.carInfo);
+                    _node.setAttribute("data-id",e.expressOrderId);
+                    content.appendChild(_node);
+                })
+            },
+            fail: function (status) {
+            }
+        })
+
+        //添加事件监听
+        content.addEventListener("click", function(e){
+            if(e.target.classList.contains("hide")){
+                if(e.target.parentNode.parentNode.lastChild.style.display == 'none'){
+                    
+                    e.target.style.transform = 'rotate(45deg)';
+                    e.target.style.borderLeft = '0.2rem solid #ff7206';
+                    e.target.style.borderTop = '0.2rem solid #ff7206';
+                    e.target.style.marginTop='1.6rem';
+                    e.target.parentNode.style.borderBottom = '#ff7206 1px solid';
+                    var number = e.target.parentNode.parentNode.getAttribute('data-id');
+                    if(e.target.parentNode.parentNode.lastChild.innerHTML == ''){
+                        getImg(e.target.parentNode.parentNode.lastChild, number);
+                    }else{
+                        e.target.parentNode.parentNode.lastChild.style.display = "block";
+                    }
+                }else{
+                    e.target.parentNode.parentNode.lastChild.style.display = "none";
+                    e.target.style.transform = 'rotate(-135deg)';
+                    e.target.style.borderLeft = '0.2rem solid #888888';
+                    e.target.style.borderTop = '0.2rem solid #888888';
+                    e.target.style.marginTop='1.3rem';
+                    e.target.parentNode.style.borderBottom = '#dddddd 1px solid';
+                    
+                }
+            }
+            if(e.target.classList.contains("card-top")){
+                if(e.target.parentNode.lastChild.style.display == 'none'){
+                    e.target.lastChild.style.transform = 'rotate(45deg)';
+                    e.target.lastChild.style.marginTop='1.6rem';
+                    e.target.style.borderBottom = '#ff7206 1px solid';
+                    e.target.lastChild.style.borderLeft = '0.2rem solid #ff7206';
+                    e.target.lastChild.style.borderTop = '0.2rem solid #ff7206';
+                    var number = e.target.parentNode.getAttribute('data-id');
+                    if(e.target.parentNode.lastChild.innerHTML == ''){
+                        getImg(e.target.parentNode.lastChild, number);
+                    }else{
+                        e.target.parentNode.lastChild.style.display = "block";
+                    }
+                }else{
+                    e.target.parentNode.lastChild.style.display = "none";
+                    e.target.lastChild.style.transform = 'rotate(-135deg)';
+                    e.target.lastChild.style.marginTop='1.3rem';
+                    e.target.style.borderBottom = '#dddddd 1px solid';
+                    e.target.lastChild.style.borderLeft = '0.2rem solid #888888';
+                    e.target.lastChild.style.borderTop = '0.2rem solid #888888';
+                    
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

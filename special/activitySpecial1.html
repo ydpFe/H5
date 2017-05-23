@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="x5-page-mode" content="app">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="layoutmode" content="standard">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-title" content="">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title></title>
+    <script type="text/javascript" src="./js/access.js"></script>
+    <style>
+        body,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        p,
+        dl,
+        dt,
+        dd,
+        ul,
+        ol,
+        li,
+        form,
+        button,
+        input,
+        textarea,
+        th,
+        td {
+            margin: 0;
+            padding: 0
+        }
+        
+        body,
+        button,
+        input,
+        select,
+        textarea {}
+        
+        body {
+            font-size: 1rem;
+            font-family: '微软雅黑', 'PingFang SC';
+            background: #fff;
+        }
+        
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        button,
+        input,
+        select,
+        textarea {
+            font-size: 100%
+        }
+        
+        table {
+            border-collapse: collapse;
+            border-spacing: 0
+        }
+        
+        ul,
+        ol {
+            list-style: none
+        }
+        
+        img {
+            border: none
+        }
+        
+        em {
+            font-style: normal
+        }
+        
+        div {
+            border: none;
+        }
+        
+        select {
+            height: 0.61rem;
+            line-height: 0.5rem;
+            padding: 0.055rem 0;
+            margin: 0
+        }
+        
+        a {
+            text-decoration: none;
+            color: #333
+        }
+        
+        img {
+            width: 100%;
+            height: auto;
+            border: none;
+            display: block;
+        }
+        
+        span {
+            vertical-align: bottom;
+        }
+        
+        @media screen and (min-width: 320px) {
+            html {
+                font-size: 16px;
+            }
+        }
+        
+        @media screen and (min-width: 375px) {
+            html {
+                font-size: 18px;
+            }
+        }
+        
+        @media screen and (min-width: 414px) {
+            html {
+                font-size: 20px;
+            }
+        }
+        
+        @media (min-width: 750px) {
+            html {
+                font-size: 36px;
+            }
+        }
+        
+        footer {
+            width: 100%;
+            height: 7rem;
+            position: fixed;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            line-height: 7rem;
+        }
+        
+        #warp {
+            margin-bottom: 4rem;
+        }
+        #loading {
+            width: 100%;
+            color: #fff;
+            text-align: center;
+            display: block;
+            background: rgba(0, 0, 0, 0.2);
+            display:none;
+        }
+        footer {
+            width: 100%;
+            height: 4rem;
+            position: fixed;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            line-height: 7rem;
+        }
+        
+        .logoMessgae {
+            width: 40%;
+            margin: .2rem 0 0 .5rem;
+            display: inline;
+        }
+        
+        .uploadButton {
+            width: 40%;
+            float: right;
+            margin: .9rem 1rem 0 0;
+            display: inline;
+        }
+        .coverBox {
+            position: relative;
+        }
+        #wxTask{
+            background: #000;
+            opacity:0.8;
+            z-index: 20;
+            overflow:hidden;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            width:100vw;
+            height:100vh;
+            display:none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="warp">
+        <!--Banner区域-->
+        <div class="bannerbox" id="bannerMessage">
+
+        </div>
+        <!--loading-->
+        <div id="loading">
+
+        </div>
+        <!--蒙层-->
+        <div id="wxTask">
+            <img id="wxTaskImg" >
+        </div>
+        <footer id="footerButton">
+            <img src="img/logoMessgae.png" class="logoMessgae">
+            <img src="img/uploadButton.png" class="uploadButton" onclick="startApp()">
+        </footer>
+    </div>
+    <script src="./js/sonic.js?v=20160929"></script>
+    <script>
+        window.GetTitle = function(){
+           return document.title;
+        }
+        var imgobj = [];
+        function lazyload(options) {
+            var doc = options.id ? document.getElementById(options.id) : document;
+            if (doc === null) return;
+            var tmp = doc.getElementsByTagName('img'),
+                tmplen = tmp.length;
+
+
+            for (var i = 0; i < tmplen; i++) {
+                var _tmpobj = tmp[i];
+                if (_tmpobj.getAttribute('data-src') !== null) {
+                    if (isLoad(_tmpobj)) {
+                        setimg(_tmpobj);
+                    } else {
+                        imgobj.push(_tmpobj);
+                    }
+                }
+            }
+            function handler() {
+                var len = imgobj.length;
+                for (var i = 0,
+                    end = len; i < end; i++) {
+                    var obj = imgobj[i];
+                    if (isLoad(obj)) {
+                        _setimg(obj);
+                        imgobj.splice(i, 1);
+                        len--;
+                        if (len === 0) { 
+                            loadstop(); 
+                        }else{
+                            addStart();
+                        }
+                    }
+                }
+            }
+
+            function isLoad(ele) {
+                var scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+                if (typeof ele === 'undefined') return false;
+                var edit = ~~ele.getAttribute("data-range") || options.lazyRange;
+                var clientHeight = scrollTop + document.documentElement.clientHeight + edit;
+                var offsetTop = 0;
+
+                while (ele.tagName.toUpperCase() !== 'BODY') {
+                    offsetTop += ele.offsetTop;
+                    ele = ele.offsetParent;
+                }
+                return (clientHeight > offsetTop);
+            }
+            function _setimg(ele) {
+                if (options.lazyTime) {
+                    setTimeout(function () {
+                        setimg(ele);
+                    },
+                        options.lazyTime + ~~ele.getAttribute('data-time'))
+                } else {
+                    setimg(ele);
+                }
+            }
+            function setimg(ele) {
+
+                ele.src = ele.getAttribute('data-src');
+
+            }
+            function loadstop() {
+                window.removeEventListener ? window.removeEventListener("scroll", handler, false) : window.detachEvent("onscroll", handler);
+            }
+            loadstop();
+            function addStart(){
+                window.addEventListener ? window.addEventListener("scroll", handler, false) : window.attachEvent("onscroll", handler);
+            }
+            addStart();
+        }
+
+	</script>
+    <script type="text/javascript">
+	function ajax(options) {
+		options = options || {};
+		options.type = (options.type || "GET").toUpperCase();
+		options.dataType = options.dataType || "json";
+		var params = formatParams(options.data);
+
+		//创建 - 非IE6 - 第一步
+		if (window.XMLHttpRequest) {
+			var xhr = new XMLHttpRequest();
+		} else { //IE6及其以下版本浏览器
+			var xhr = new ActiveXObject('Microsoft.XMLHTTP');
+		}
+
+		//接收 - 第三步
+		xhr.onreadystatechange = function () {
+			if (xhr.readyState == 4) {
+				var status = xhr.status;
+				if (status >= 200 && status < 300) {
+					options.success && options.success(JSON.parse(xhr.responseText), xhr.responseXML);
+				} else {
+					options.fail && options.fail(status);
+				}
+			}
+		}
+
+		//连接 和 发送 - 第二步
+		if (options.type == "GET") {
+			// xhr.open("GET", options.url + "?" + params, true);
+			xhr.open("GET", options.url, true);
+			xhr.setRequestHeader("Accept", "version=1.1.0&device_key=11111&client_type=mobile_ios&client_os_version=10.0.1");
+			xhr.send(null);
+		} else if (options.type == "POST") {
+			xhr.open("POST", options.url, true);
+			//设置表单提交时的内容类型
+			xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+			xhr.send(params);
+		}
+	}
+	//格式化参数
+	function formatParams(data) {
+		var arr = [];
+		for (var name in data) {
+			arr.push(encodeURIComponent(name) + "=" + encodeURIComponent(data[name]));
+		}
+		arr.push(("v=" + Math.random()).replace(".",""));
+		return arr.join("&");
+	}
+
+	function GetRequest() {
+		var url = location.search;
+		var theRequest = new Object();
+		if (url.indexOf("?") != -1) {
+			var str = url.substr(1);
+			strs = str.split("&");
+			for(var i = 0; i < strs.length; i ++) {
+				theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);
+			}
+		}
+		return theRequest;
+	}
+
+	var Request = new Object();
+	Request = GetRequest();
+</script>
+    <script type="text/javascript">
+   /**
+    *懒加载
+    */
+    function lazyloadImg(){
+            var lazyloading = lazyload({       
+                    id:"warp",
+                    lazyTime:0,
+                    lazyRange:0
+            });
+    }
+    /**
+    *下载地址
+    */
+    function startApp(){
+        var system=selSystem();
+        if(system=="android"){
+                window.location.href ="http://a.app.qq.com/o/simple.jsp?pkgname=com.kqc.b2b";
+        }else{
+                window.location.href = "https://itunes.apple.com/cn/app/id1071024901";;
+        }
+    }
+    /**
+     * 获取到传参的参数例如?id=1212
+     * @returns {obj}
+     */
+    var getFinal=function (){
+    var oldUrl = window.location.href;
+    var arr = (oldUrl.substring(oldUrl.lastIndexOf('?')+1,oldUrl.length)).split('&');
+        // alert(arr)
+        var obj = {};
+        for(var i=0;i<arr.length;i++){
+            arr[i] = arr[i].split('=');
+            obj[arr[i][0]] = arr[i][1];
+        }
+
+        return obj;
+    };
+    var id=getFinal();
+    /**
+     * 获取HOST请求参数
+     * @returns {HOST}
+     */
+    function getHost(){
+        var oldUrl = document.domain;
+        var num=oldUrl.lastIndexOf('.');
+        var newUrl=oldUrl.substring(num+1,oldUrl.length);
+        if(newUrl=='cc'){
+            var HOST="https://api.cyb.kuaiqiangche.cc";
+        }else if(newUrl=='com'){
+            var HOST="https://api.cyb.kuaiqiangche.com";
+        }else{
+            var HOST="https://api.cyb.kuaiqiangche.cc";
+        }
+        return HOST;
+    }
+    var HOST= getHost();
+    /**
+     * 判断是否是在APP内部
+     */
+    function selectApp(){
+        if(navigator.userAgent.indexOf('cheyuanbaoios')!=-1 || navigator.userAgent.indexOf('cheyuanbaoand')!=-1){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    /**
+     * 判断系统
+     */
+    function selSystem(){
+        var ua = navigator.userAgent.toLowerCase();	
+        if (/iphone|ipad|ipod/.test(ua)) {
+                return "iphone";		
+        } else if (/android/.test(ua)) {
+                return "android";	
+        }
+    }
+    var systemObj=selSystem();
+    /**
+     * 判断微信
+     */
+    function isWeixn(){  
+        var ua = navigator.userAgent.toLowerCase();  
+        if(ua.match(/MicroMessenger/i)=="micromessenger") {  
+			document.getElementById("wxTaskImg").src = './img/wxBg.png';
+            return true;  
+        } else {  
+            return false;  
+        }  
+    }
+    var wxObj=isWeixn();
+    /**
+     * 根据是否是在APP内部修改样式
+     */
+    function setStyle(){
+        var obj=selectApp();
+        if(obj==true){
+            var footer=document.getElementById('footerButton');
+            footer.style.display="none";
+            var warp=document.getElementById('warp');
+            warp.style.marginBottom="0px";
+        }
+    }
+    var flagSelect;
+    setStyle();
+    var LOADING = document.getElementById('loading')//不和屏幕同宽的容器
+    window.onload = function(){
+	    var deviceWidth = document.documentElement.clientWidth;
+
+        //banner渲染
+        ajax({
+            type:"GET",
+            url: HOST+"/event/source/activity_detail?activity="+id.id+"&page=1&size=1000",
+            dataType:"json",
+            data:{},
+            success:function(res,xml){
+                if(res.code==0){
+                    LOADING.style.display = "block";
+                    //创建对象
+                    document.title = res.data.background.title;
+                    if(navigator.userAgent.indexOf('cheyuanbaoios/after')!=-1){
+						if(window.refreshTitle){
+							 refreshTitle(res.data.background.title);
+						}
+                    }
+                    var bannerMessage=document.getElementById("bannerMessage");
+                    var data=res.data.list;
+                    //判断是否在APP内部
+                    var objAPP=selectApp();
+                    //渲染图片添加链接
+                    for(var i=0;i<data.length;i++){
+                        var arr=[];
+                        //用来判断是否连接数量和url的数量是否一致  不一致则用较少的个数用于下边的for循环
+                        var urlNum=data[i].url.split(';');
+                        var urlLen=urlNum.length;
+                        var linkNum=data[i].linkNumber;
+                        if(urlLen==linkNum){
+                            dataNum=linkNum;
+                        }else if(linkNum<urlLen){
+                            dataNum=linkNum;
+                        }else if(urlLen<linkNum){
+                            dataNum=urlLen;
+                        }
+
+                        for(var j=0;j<dataNum;j++){
+                            var param={};
+                            var linkLength=data[i].url.split(';');
+                            var str = /^[0-9]*$/;
+                            var r = linkLength[j].match(str);
+                            if(r==null){
+                                param["linkUrl"]=linkLength[j];
+                                param["clickUrl"]='';
+                            }else{
+                                if(objAPP==true){
+                                    param["linkUrl"]="cybapp://car/id/"+linkLength[j];
+                                    param["clickUrl"]='';
+                                }else{
+                                    param["linkUrl"]="http://wap.b.kuaiqiangche.com/carsource.html?car_id="+linkLength[j];
+                                    param["clickUrl"]='';
+                                }
+                            }
+                            if(data[i].urlExtra[j].json!=null){
+                                if(objAPP==true){
+                                    flagSelect=false;
+                                    if(systemObj=='android'){
+                                        param["linkUrl"]='';
+                                        var message=JSON.stringify(data[i].urlExtra[j].json.android);
+                                        param["clickUrl"]="(function(){ NewJavaInjectedUtils.startJump(JSON.stringify("+message+"));})()";
+                                        
+                                    }else if(systemObj=='iphone'){
+
+                                        param["linkUrl"]='';
+                                        var message=JSON.stringify(data[i].urlExtra[j].json.ios)
+                                        param["clickUrl"]="(function(){var str ="+message+";iOSJump(str);})()";
+                                        
+                                    }
+                                }else{
+                                    flagSelect=true;
+                                    if(systemObj=='android'){
+                                        param["linkUrl"]='';
+                                        if(data[i].urlExtra[j].json.android.params!='' && data[i].urlExtra[j].json.android.params!=null){
+                                            andParams=",params:[{hint:"+data[i].urlExtra[j].json.android.params[0].hint+",key:"+data[i].urlExtra[j].json.android.params[0].key+",type:"+data[i].urlExtra[j].json.android.params[0].type+"}]";
+                                        }else{
+                                            andParams=" ";
+                                        }
+                                        param["clickUrl"]="intent://main/#Intent;scheme=kqc;package=com.kqc.b2b;S.msg={clazz:"+data[i].urlExtra[j].json.android.clazz+andParams+"};end\"";
+                                        if(wxObj==true){
+                                            flagSelect='wx';
+                                            param["linkUrl"]='';
+                                            param["clickUrl"]="(function(){var wxTask=document.getElementById(\"wxTask\");wxTask.style.display=\"block\";wxTask.addEventListener(\"click\",function(){wxTask.style.display=\"none\";})})()";
+                                        }
+
+                                    }else if(systemObj=='iphone'){
+                                        param["linkUrl"]='';
+                                        iosParams=JSON.stringify(data[i].urlExtra[j].json.ios);
+                                        param["clickUrl"] = "cheyuanbao://?params="+iosParams;
+                                        if(wxObj==true){
+                                            flagSelect='wx';
+                                            param["linkUrl"]='';
+                                            param["clickUrl"]="(function(){var wxTask=document.getElementById(\"wxTask\");wxTask.style.display=\"block\";wxTask.addEventListener(\"click\",function(){wxTask.style.display=\"none\";})})()";
+                                        }
+                                    }
+                                }
+                            }
+                            
+                            param["width"]=100/Number(data[i].linkNumber);
+                            param["left"]=(100/Number(data[i].linkNumber))*j;
+                            arr.push(param);
+                        }
+                        
+                        var obj="<div class='coverBox'>"
+                        // obj+="<img src=''  data-src='"+data[i].coverImg+"?imageView2/2/q/90/interlace/1/w/"+ deviceWidth +"'>";
+                        obj+="<img src=''  data-src='"+data[i].coverImg+"'>";
+                        var clickMap=[];//存放唤起APP的协议
+                        for(var k=0;k<arr.length;k++){
+                            if(arr[k].clickUrl!=''){
+                                if(flagSelect==true){
+                                    clickMap.push(arr[k].clickUrl);
+                                    var aObject="<a href='"+arr[k].clickUrl+"' style=' width:"+arr[k].width+"%; left:"+arr[k].left+"%; height:100%; position: absolute;top:0'></a>";
+                                }else if(flagSelect==false){
+                                    var aObject="<a style=' width:"+arr[k].width+"%; left:"+arr[k].left+"%; height:100%; position: absolute;top:0' onclick='"+arr[k].clickUrl+"'></a>";
+                                }else if(flagSelect=='wx'){
+                                    var aObject="<a style=' width:"+arr[k].width+"%; left:"+arr[k].left+"%; height:100%; position: absolute;top:0' onclick='"+arr[k].clickUrl+"'></a>";
+                                }
+                                
+                            }else{
+                                var aObject="<a href='"+arr[k].linkUrl+"' style=' width:"+arr[k].width+"%; left:"+arr[k].left+"%; height:100%; position: absolute;top:0'></a>";
+                            }
+                            obj+=aObject;
+                        }
+                        obj+="</div>";
+                        bannerMessage.innerHTML+=obj;
+                        //页面加载结束才判断是否唤起APP 保证在没有安装APP的时候页面也加载
+                        if(clickMap.length!=0){
+                            // document.location =clickMap[0];
+                        }
+                        // LOADING.style.display = "none ";
+                    }
+                        //加载canvas loading
+                        var circle = new Sonic({
+                            width: 20,
+                            height: 20,
+                            padding: 5,
+                            strokeColor: '#000',
+                            pointDistance: .01,
+                            stepsPerFrame: 3,
+                            trailLength: .7,
+
+                            step: 'fader',
+
+                            setup: function () {
+                                this._.lineWidth = 3;
+                            },
+
+                            path: [
+                                ['arc', 10, 10, 10, 10, 360]
+                            ]
+
+                        });
+                        circle.play();
+                        LOADING.appendChild(circle.canvas);
+                        //执行懒加载
+                        lazyloadImg();
+                    
+                }
+            },
+            fail: function (status) {
+                    //执行失败 do something
+            }
+        })
+    }
+    window.onscroll = function () {
+        if(imgobj.length==0){
+            LOADING.style.display = "none ";
+        }
+    }
+</script>
+</body>
+
+</html>

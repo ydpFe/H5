@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1, minimum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="x5-page-mode" content="app">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="layoutmode" content="standard">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-title" content="">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title></title>
+    <script type="text/javascript" src="./js/access.js"></script>
+    <script type="text/javascript">
+        /**
+         * 计算根元素大小 3.75为设计稿尺寸/100
+         */
+        var deviceWidth = document.documentElement.clientWidth;
+        document.documentElement.style.fontSize = deviceWidth / 3.75 + 'px';
+        window.onresize = function() {
+             var deviceWidth = document.documentElement.clientWidth;
+             document.documentElement.style.fontSize = deviceWidth / 3.75 + 'px';
+        };
+    </script>
+    <link rel="stylesheet" href="css/newActivitySDetails.css?v=20170326">
+</head>
+
+<body id="bodyBg">
+    <div id="warp">
+        <!--弹窗-->
+        <div id="popup">
+            <div id="popupText"></div>
+        </div>
+        <!--微信蒙层-->
+        <div id="wxTask">
+            <img src="./img/wxBg.png">
+        </div>
+        <header id="headerBox">
+            
+        </header>
+        <div id="center">
+            <!--主推-->
+            <div id="pushModule">
+            </div>
+            <!--center banner-->
+            <div id="centerBanner"> 
+            </div>
+            <!--car source-->
+            <div id="goodsSource">
+                <ul id="goodsSourceBox">
+                </ul>
+            </div>
+            <!-- next -->
+            <div id="nextBanner">
+            </div>
+        </div>
+    </div>
+    <script src="js/newActivityDetails.js?v=20170326"></script>
+    <script src="js/cookie.js?v=20170327"></script>
+    <script src="js/ajax.js?v=20170327"></script>
+</body>
+
+</html>

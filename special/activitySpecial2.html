@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1, minimum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="x5-page-mode" content="app">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="layoutmode" content="standard">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-title" content="">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title></title>
+    <script type="text/javascript" src="js/access.js?v=20160929"></script>
+    <script type="text/javascript">
+        /**
+         * 计算根元素大小 3.75为设计稿尺寸/100
+         */
+        var deviceWidth = document.documentElement.clientWidth;
+        if (deviceWidth > 640) deviceWidth = 640;
+        document.documentElement.style.fontSize = deviceWidth / 3.75 + 'px';
+    </script>
+    <link rel="stylesheet" href="css/main.css?v=20160929">
+    <style>
+        #warp {
+            margin-bottom: 0.72rem;
+        }
+        
+        #todayRecommend {
+            padding-top: 0.1rem;
+        }
+        
+        footer {
+            width: 100%;
+            height: 0.72rem;
+            position: fixed;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            line-height: 7rem;
+        }
+        
+        .logoMessgae {
+            width: 1.50rem;
+            height: 0.63rem;
+            display: block;
+            float: left;
+            margin: 0.065rem 0 0 0.085rem;
+        }
+        
+        .uploadButton {
+            float: right;
+            width: 1.5rem;
+            height: 0.39rem;
+            display: block;
+            margin: 0.16rem 0.18rem 0 0;
+        }
+        .bannerImg{
+            display:block;
+        }
+    </style>
+</head>
+
+<body id="body">
+    <div id="warp">
+        <!--Banner区域-->
+        <div class="bannerbox" id="bannerMessage">
+
+        </div>
+        <!--今日主推-->
+        <ul id="todayRecommend">
+
+        </ul>
+        <footer id="footerButton">
+            <img src="img/logoMessgae.png" class="logoMessgae">
+            <img src="img/uploadButton.png" class="uploadButton" onclick="startApp()">
+        </footer>
+    </div>
+    <script type="text/javascript" src="./js/lazyLoad.js?v=20160921"></script>
+    <script type="text/javascript" src="./js/globel.js?v=20160920"></script>
+    <script type="text/javascript" src="js/ajax.js?v=20160921"></script>
+    <script type="text/javascript" src="./js/juicer.js?v=20160929"></script>
+    <script type="text/javascript" src="./js/share.js?v=20160929"></script>
+    <script>
+        function startApp(){
+            window.location = "http://wap.b.kuaiqiangche.com/qrcode.html";
+        }
+        /**
+         * 获取HOST
+         */
+        var HOST = getHost();
+        /*
+            juicer配置项
+        */
+        juicer.set('cache',false);
+        juicer.set('errorhandling',false);
+        juicer.set('strip',true);
+        juicer.set('detection',false);
+        /**
+         * 设置banner和背景色 
+         */
+        // ajax({
+        //     type: "GET",
+        //     url: HOST + "/event/source/activity_background",
+        //     dataType: "json",
+        //     data: {},
+        //     success: function (res, xml) {
+        //         if (0 == res.code) {
+        //             //创建对象
+        //             // var BANNERMESSAGE = document.getElementById("bannerMessage");
+        //             var BODY = document.querySelector("body");
+        //             //设置背景色
+        //             BODY.style.background = '#' + res.data.bgColor;
+        //             //渲染banner
+        //             // var HTML = "<img src='' data-src='"+res.data.banner.src+"'>";
+        //             // BANNERMESSAGE.innerHTML = HTML;
+        //             //执行懒加载
+        //             lazyloadImg("bannerMessage");
+        //         }
+        //     }
+        // })
+        /**
+         * 专题
+         * @param type {number} 表示今日主推
+         * @param page {number} 当前页数
+         * @param size {number} 每页的条数
+         */
+        var ACTIVITYID=getFinal();//获取到请求参数
+        ajax({
+            type: "GET",
+            url: HOST+"/event/source/activity_detail?activity="+ACTIVITYID.id+"&page=1&size=1000",
+            dataType: "json",
+            data: {},
+            success: function (res, xml) {
+                if (0 == res.code) {
+                    //将对象传入到res
+                    var OBJAPP=selectApp();//判断是否是在APP 内部
+                    if(OBJAPP==true){
+                        var footer=document.getElementById('footerButton');
+                        footer.style.display="none";
+                        var warp=document.getElementById('warp');
+                        warp.style.marginBottom="0px";
+                    }
+                    res.OBJAPP = OBJAPP;
+                    //设置title
+                    document.title = res.data.background.title;
+                    //定义对象
+                    var TODATRECOMMEND=document.getElementById("todayRecommend");
+                    var BANNERMESSAGE = document.getElementById("bannerMessage");
+                    //设置banner
+                    if(res.data.background.banner.src!=''){
+                        var HTML = "<img src='"+res.data.background.banner.src+"' class='bannerImg'>";
+                        BANNERMESSAGE.innerHTML = HTML;
+                    }
+                    //设置背景色
+                    if(res.data.background.bgColor!=''){
+                        TODATRECOMMEND.style.background = '#' + res.data.background.bgColor;
+                    }
+                    //挂载模板
+                    if(res.data.background.tpl==1){
+                        var HTML=juicer(todayFirst(),res);
+                    }else if(res.data.background.tpl==2){
+                        var HTML=juicer(todaySecond(),res);
+                    }else if(res.data.background.tpl==3){
+                        var HTML=juicer(todayThird(),res);
+                    }else{
+                        var HTML=juicer(todayFirst(),res);
+                    }
+                    TODATRECOMMEND.innerHTML=HTML;
+                    //指定懒加载容器
+                    lazyloadImg("todayRecommend");
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,880 @@
+body,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        p,
+        dl,
+        dt,
+        dd,
+        ul,
+        ol,
+        li,
+        form,
+        button,
+        input,
+        textarea,
+        th,
+        span,
+        td {
+            margin: 0;
+            padding: 0
+        }
+        
+        body,
+        button,
+        input,
+        select,
+        textarea {}
+        
+        body {
+            font-size:0.15rem;
+            font-family: '微软雅黑', 'PingFang SC';
+            background: #f7f7f7;
+            color: #333;
+        }
+        
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        button,
+        input,
+        select,
+        textarea {
+            /*font-size: 100%*/
+        }
+        
+        table {
+            border-collapse: collapse;
+            border-spacing: 0
+        }
+        
+        ul,
+        ol {
+            list-style: none
+        }
+        
+        img {
+            border: none
+        }
+        
+        em {
+            font-style: normal
+        }
+        
+        div {
+            border: none;
+        }
+        
+        a {
+            text-decoration: none;
+            color: #333
+        }
+        
+        img {
+            width: 100%;
+            height: auto;
+            border: none;
+        }
+        
+        span {
+            /*vertical-align: bottom;*/
+            margin:0;
+            padding: 0;
+        }
+        
+        .bannerbox{
+            width:100%;
+            height:auto;
+        }
+        #footerButton{
+            z-index: 15;
+        }
+        #todayRecommend{
+            overflow: auto;
+        }
+        #orginBgColor{
+            overflow: auto;
+        }
+        .activityTitle {
+            text-align: center;
+            color: #fff;
+            line-height: 0.88rem;
+        }
+        .activityTitle img {
+            text-align: center;
+            display: block;
+        }
+        .activityBg {
+            width: 3.30rem;
+            height: 3.17rem;
+            margin: 0 auto;
+            margin-bottom: 0.12rem;
+            position: relative;
+            z-index:5;
+        }
+        .bgImgBox{
+            position: absolute;
+            z-index: -1;
+            width: 3.30rem;
+            height: 3.17rem;
+        }
+        .bgImg{
+            position: absolute;
+            z-index: -1;
+            width: 3.30rem;
+            height: 3.17rem;
+        }
+        
+        .bgFloat {}
+        
+        .strongText {
+            font-weight: bold;
+        }
+        
+        .positionImg {
+            width: 3.07rem;
+            height: 1.56rem;
+            padding: 0.1rem 0.11rem 0.18rem 0.12rem;
+            position:relative;
+        }
+        
+        .positionText {
+            width: 3.30rem;
+            height: 1.33rem;
+            float: left;
+        }
+        .carNameBox{
+            height: 0.24rem;
+            margin: 0.28rem 0.20rem 0 0.12rem;
+            font-size:0.17rem;
+        }
+        .out {
+            font-size:0.14rem;
+            margin: 0.06rem 0 0 0.12rem;
+            height: 0.2rem;
+        }
+        .positionSale {
+            height: 0.36rem;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            margin-right: 0.11rem;
+            margin-bottom: 0.28rem;
+            color: #FF6D00;
+            font-size:0.30rem;
+            font-style: oblique;
+            font-weight: bold;
+        }
+        .chrome .positionSale {
+            height: 0.36rem;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            margin-right: 0.11rem;
+            margin-bottom: 0.24rem;
+            color: #FF6D00;
+            font-size:0.30rem;
+            font-style: oblique;
+            font-weight: bold;
+        }
+        .fontSize-16{
+            font-size:0.16rem;
+            font-style:normal;
+            margin-left:0.03rem;
+            font-weight:normal;
+        }
+        #specialBox{
+            overflow: auto;
+        }
+        #carOrgin{
+            padding-top:0.05rem;
+            overflow: auto;
+        }
+        .fontColor {
+            color: #3f3f3f;
+        }
+        
+        .marginLeft-5 {
+            /*margin-left: .5rem;*/
+        }
+        
+        .marginTop-5 {
+            /*margin-top: .2rem;*/
+        }
+        
+        
+        .fontSize-14 {
+            font-size:0.14rem;
+        }
+        
+        .carMessage {
+            /*color: #333;
+            width: 90%;
+            margin-left: 2rem;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            white-space: nowrap;
+            overflow: hidden;*/
+        }
+        
+        .ellipsisObj {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .recommend {
+            width:3.59rem;
+            height:0.85rem;
+            margin:0 auto;
+            margin-bottom:0.06rem;
+            background:#fff;
+            overflow:auto;
+        }
+        
+        .recommendImgBox {
+            width:1.05rem;
+            height:0.85rem;
+            float:left;
+            position:relative;
+        }
+        
+        .recommendImg {
+            width:1.05rem;
+            height:0.74rem;
+            margin-top:0.055rem;
+        }
+        
+        .sellOutSmall {
+            width:0.6rem;
+            height: 0.6rem;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top:-0.3rem;
+            margin-left:-0.3rem;
+        }
+        
+        .recommendText {
+            float: left;
+            height:0.85rem;
+            width:2.54rem;
+            overflow:auto; 
+            zoom:1; 
+        }
+        
+        .recommendCarName { 
+            height:0.21rem;
+            margin:0.08rem 0.06rem 0 0.06rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            vertical-align:middle; 
+        }
+        .chrome .recommendCarName { 
+            height:0.21rem;
+            margin:0.10rem 0.06rem 0 0.06rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            vertical-align:middle; 
+        }
+        .smallOut{
+            height:0.21rem;
+            margin:0.04rem 0.06rem 0 0.06rem;
+            vertical-align:middle; 
+        }
+        .smallPrice{
+            height:0.21rem;
+            margin:0.04rem 0.06rem 0 0.06rem;
+            vertical-align:middle; 
+        }
+        .chrome .smallOut{
+            height:0.21rem;
+            margin:0.06rem 0.06rem 0 0.06rem;
+            vertical-align:middle; 
+        }
+        .recommendCarSale {
+            color: #ff6f02;
+            float:left;
+        }
+        
+        .recommendCarPrice {
+            color: #ababab;
+            float: right;
+        }
+        
+        .sellOut {
+            z-index: 10;
+            position: absolute;
+            width:1rem;
+            height:1rem;
+            top: 50%;
+            left: 50%;
+            margin-top:-0.5rem;
+            margin-left:-0.5rem
+        }
+        
+        .carZindex {
+            /*z-index: 1;
+            width: 100%;
+            height: 100%;*/
+        }
+        
+        .fontStyle {
+            /*font-style: oblique;
+            font-size: 2.2rem;
+            font-family: 'Helvetica';*/
+        }
+        #loading {
+            width: 100%;
+            height:0.40rem;
+            color: #fff;
+            text-align: center;
+            display: block;
+        }
+        
+        .loadImg {
+            /*margin-top: 1rem;
+            height: 4rem;
+            width: 4rem;*/
+        }
+        
+        #signUp{
+            width:1.43rem;
+            height:0.61rem;
+            position:fixed;
+            bottom:0;
+            margin-bottom:0.65rem;
+            right:0;
+            z-index:13;
+        }
+        .signUpText{
+            font-size:0.17rem;
+            color:#fff;
+            text-align:center;
+        }
+        .signUpImg{
+            width:1.43rem;
+            height:0.61rem;
+            position:absolute;
+            z-index:-1;
+        }
+
+        /*今日主推02模板CSS*/
+        .todaybox{
+            width:3.28rem;
+            height: 2.58rem;
+            margin:0 auto;
+            border-radius: 0.07rem;
+            background: #fff;
+            margin-bottom:0.10rem;
+            position: relative; 
+        }
+        .todayCarImgBox{
+/*            width:3.07rem;
+            height: 1.56rem;
+            padding:0.09rem 0.10rem 0.08rem 0.11rem;
+            position: relative;*/
+        }
+        .todayCarImg{
+            width:3.07rem;
+            height: 1.56rem;
+            padding:0.09rem 0.10rem 0.08rem 0.11rem;
+            position: relative;
+        }
+        .todayCarName{
+            font-size: 0.17rem;
+            padding-left:0.11rem;
+            width: 2.98rem;
+            height: 0.24rem;
+
+        }
+        .todayCarin{
+            width:2.98rem;
+            height: 0.20rem;
+            padding:0.03rem 0 0 0.11rem;
+        }
+        .todayCarPrice{
+            width:2.98rem;
+            height: 0.20rem;
+            padding:0.04rem 0 0 0.11rem;
+        }
+        .todayCarBigPrice{
+            height: 0.36rem;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            padding:0 0.11rem 0.1rem 0;
+        }
+        .chrome .todayCarBigPrice{
+            height: 0.36rem;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            padding:0 0.11rem 0.09rem 0;
+        }
+        .todayCarSellOut{
+            width: 0.80rem;
+            height: 0.80rem;
+            position: absolute;
+            left:50%;
+            margin-left:-0.40rem;
+            z-index:10;
+            top:50%;
+            margin-top:-0.80rem;
+        }
+        .font-style-oblique{
+            font-style: oblique
+        }
+        .font-size-14{
+            font-size: 0.14rem;
+        }
+        .fontColor-orange{
+            color: #FF6D00;
+        }
+        .font-size-30{
+            font-size: 0.30rem;
+        }
+        .font-size-16{
+            font-size: 0.16rem;
+        }
+
+        /*今日主推横向排版模板*/
+        .todayXbox{
+            width: 100%;
+            height: 1.45rem;
+            background: rgba(0,3,51,0.26);
+            margin-bottom: 0.1rem;
+        }
+        .todayXCarBox{
+            width: 1.40rem;
+            height: 1.01rem;
+            margin: 0.22rem 0 0 0.10rem;
+            float: left;
+        }
+        .todayXCarImg{
+            width: 1.40rem;
+            height: 0.71rem;
+            display: block;
+        }
+        .todayXCarButton{
+            width: 1.40rem;
+            height: 0.30rem;
+            background:#FFC612;
+            text-align: center;
+            line-height: 0.30rem; 
+            display: block;
+        }
+        .chrome .todayXCarButton{
+            width: 1.40rem;
+            height: 0.30rem;
+            background:#FFC612;
+            text-align: center;
+            line-height: 0.33rem; 
+            display: block;
+        }
+        .todayXCarMessageBox{
+            float:left;
+            height: 1.45rem;
+            width:2.25rem;
+        }
+        .todayXCarName{
+            width: 1.93rem;
+            height: 0.24rem;
+            line-height: 0.24rem;
+            padding: 0.20rem 0.22rem 0 0.10rem;
+            font-size: 0.17rem;
+            color: #fff;
+        }
+        .todayXCarIn{
+            width:1.93rem;
+            height:0.18rem;
+            line-height: 0.18rem;
+            padding: 0.05rem 0.22rem 0 0.10rem;
+            color: #fff;
+            font-size: 0.13rem;
+        }
+        .todayXCarPrice{
+            width: 2.14rem;
+            height:0.18rem;
+            line-height: 0.18rem;
+            font-size: 0.13rem;
+            color: rgba(255,255,255,0.4);
+            padding: 0.07rem 0 0 0.10rem;
+        }
+        .todayXCarBigPrice{
+            float: right;
+            height: 0.36rem;
+            padding: 0.06rem 0.20rem 0 0;
+        }
+        .positionBox{
+            position: relative;
+        }
+        .todayXCarSellOut{
+            position:absolute;
+            width: 0.45rem;
+            height: 0.45rem;
+            top:50%;
+            left:50%;
+            margin-left: -0.225rem;
+            margin-top: -0.225rem;
+
+        }
+        .fontColor-yellow{
+            color:#FFC612;
+        }
+
+        /*活动专场 图片样式*/
+        .activityImgStyle01{
+            display:block; 
+            padding-bottom:0.1rem;
+        }
+        .activityImgStyle02{
+            width: 3.39rem;
+            padding-bottom:0.1rem;
+            margin:0 auto;
+            display:block; 
+        }
+
+        /*推荐车源带边框的模板 CSS*/
+        #sourceFrameBox{
+            width: 3.54rem;
+            height: auto;
+            overflow:auto;
+            margin:0 auto;
+        }
+        .sourceFrameModuleBox{
+            width: 1.67rem;
+            height: 2.20rem;
+            float: left;
+            background: rgba(255,255,255,0.9);
+            margin:0 0.05rem 0.10rem 0.05rem;
+        }
+        .sourceFrameImgBox{
+            width: 1.59rem;
+            height: 1.08rem;
+            padding: 0.04rem 0.04rem 0 0.04rem;
+            position: relative;
+        }
+        .sourceFrameImg{
+            width: 1.59rem;
+            height: 1.08rem;
+            position: absolute;
+            z-index:1;
+        }
+        .sourceFrameSellOutImg{
+            position: absolute;
+            width: 0.6rem;
+            height: 0.6rem;
+            z-index: 10;
+            top: 50%;
+            left:50%;
+            margin-left: -0.3rem;
+            margin-top: -0.3rem;
+        }
+        .sourceFrameCarName{
+            height: 0.20rem;
+            line-height: 0.20rem;
+            padding:0.04rem 0.08rem 0 0.08rem;
+        }
+        .sourceFrameCarIn{
+            height: 0.18rem;
+            line-height: 0.18rem;
+            font-size: 0.13rem;
+            padding:0.04rem 0.08rem 0 0.08rem;
+        }
+        .sourceFrameCarPrice{
+            height: 0.18rem;
+            line-height: 0.18rem;
+            color: #999999;
+            font-size: 0.13rem;
+            padding:0.05rem 0.08rem 0 0.08rem;
+        }
+        .sourceFrameCarButton{
+            width: 1.27rem;
+            height: 0.27rem;
+            line-height: 0.27rem;
+            text-align: center;
+            background: #FF7206;
+            margin:0 auto;
+            margin-top:0.06rem;
+            color: #fff;
+            border-radius: 0.62rem;
+        }
+        .chrome .sourceFrameCarButton{
+            width: 1.27rem;
+            height: 0.27rem;
+            line-height: 0.29rem;
+            text-align: center;
+            background: #FF7206;
+            margin:0 auto;
+            margin-top:0.06rem;
+            color: #fff;
+            border-radius: 0.62rem;
+        }
+        .marginLeft-9{
+            margin-left: 0.09rem;
+        }
+
+
+        /*推荐车源 圆角板式*/
+        .sourceFrameRadiusBox{
+            width: 1.67rem;
+            height: 2.20rem;
+            float: left;
+            background: #fff;
+            margin:0 0.05rem 0.10rem 0.05rem;
+            border-radius: 0.06rem;
+        }
+        .sourceFrameRadiusImgBox{
+            width: 1.67rem;
+            height: 1.12rem;
+            position: relative;
+            border-top-left-radius:0.06rem;
+            border-top-right-radius:0.06rem;
+        }
+        .sourceFrameRadiusImg{
+            width: 1.67rem;
+            height: 1.12rem;
+            position: absolute;
+            border-top-left-radius:0.06rem;
+            border-top-right-radius:0.06rem;
+            z-index:1;
+        }
+        .sourceFrameRadiusSellOutImg{
+            position: absolute;
+            width: 0.6rem;
+            height: 0.6rem;
+            z-index: 10;
+            top: 50%;
+            left:50%;
+            margin-left: -0.3rem;
+            margin-top: -0.3rem;
+        }
+        .sourceFrameRadiusCarName{
+            height: 0.20rem;
+            line-height: 0.20rem;
+            padding:0.04rem 0.08rem 0 0.08rem;
+        }
+        .sourceFrameRadiusCarIn{
+            height: 0.18rem;
+            line-height: 0.18rem;
+            font-size: 0.13rem;
+            padding:0.04rem 0.08rem 0 0.08rem;
+        }
+        .sourceFrameRadiusCarPrice{
+            height: 0.18rem;
+            line-height: 0.18rem;
+            color: #999999;
+            font-size: 0.13rem;
+            padding:0.05rem 0.08rem 0 0.08rem;
+        }
+        .sourceFrameRadiusCarButton{
+            width: 1.27rem;
+            height: 0.27rem;
+            line-height: 0.27rem;
+            text-align: center;
+            background: #FF7206;
+            margin:0 auto;
+            margin-top:0.06rem;
+            color: #fff;
+            border-radius: 0.62rem;
+        }
+        .chrome .sourceFrameRadiusCarButton{
+            width: 1.27rem;
+            height: 0.27rem;
+            line-height: 0.29rem;
+            text-align: center;
+            background: #FF7206;
+            margin:0 auto;
+            margin-top:0.06rem;
+            color: #fff;
+            border-radius: 0.62rem;
+        }
+
+        /*推荐车源 横向排版无边框*/
+        .recommendNoFrame {
+            height:1.04rem;
+            border-bottom:1px #e4e4e4 solid;
+            background:#fff;
+            overflow:auto;
+        }
+        
+        .recommendNoFrameImgBox {
+            width:1.05rem;
+            height:0.72rem;
+            float:left;
+            position:relative;
+            margin:0.16rem 0 0.16rem 0.09rem;
+        }
+        
+        .recommendNoFrameImg {
+            width:1.05rem;
+            height:0.72rem;
+        }
+        
+        .NoFrameSellOutSmall {
+            width:0.6rem;
+            height: 0.6rem;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top:-0.3rem;
+            margin-left:-0.3rem;
+        }
+        
+        .recommendNoFrameText {
+            float: left;
+            height:1.04rem;
+            overflow:auto; 
+            zoom:1; 
+        }
+        
+        .recommendNoFrameCarName {
+            width:2.42rem; 
+            height:0.21rem;
+            margin:0.16rem 0 0 0.09rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            vertical-align:middle; 
+        }
+        .chrome .recommendNoFrameCarName { 
+            height:0.21rem;
+            margin:0.17rem 0 0 0.09rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            vertical-align:middle; 
+        }
+        .NoFrameSmallOut{
+            height:0.21rem;
+            margin:0.06rem 0.06rem 0 0.09rem;
+            vertical-align:middle; 
+        }
+        .NoFramesmallPrice{
+            height:0.24rem;
+            line-height: 0.24rem;
+            margin:0.06rem 0.10rem 0 0.09rem;
+            vertical-align:middle; 
+        }
+        .chrome .NoFramesmallPrice{
+            height:0.24rem;
+            line-height: 0.24rem;
+            margin:0.03rem 0.10rem 0 0.09rem;
+            vertical-align:middle; 
+        }
+        .chrome .NoFrameSmallOut{
+            font-size: 0.13rem;
+            height:0.21rem;
+            margin:0.07rem 0.06rem 0 0.09rem;
+            vertical-align:middle; 
+        }
+        .recommendNoFrameCarSale {
+            color: #ff6f02;
+            float:left;
+            font-size: 0.17rem;
+        }
+        
+        .recommendNoFrameCarPrice {
+            color: #ababab;
+            float: right;
+            font-size: 0.13rem;
+            margin-top: 0.01rem;
+        }
+        .chrome .recommendNoFrameCarPrice {
+            color: #ababab;
+            float: right;
+            font-size: 0.13rem;
+            margin-top: 0.02rem;
+        }
+        #wxTask{
+            background: #000;
+            opacity:0.8;
+            z-index: 20;
+            overflow:hidden;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            width:100vw;
+            height:100vh;
+            display:none;
+        }
+
+        .dialog_container{
+            position: fixed;
+            width: 2.7rem;
+            height: 1.26rem;
+            top:50%;
+            margin-top:-0.63rem;
+            left: 50%;
+            margin-left: -1.35rem;
+            background: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 0.1rem;
+            z-index: 40
+        }
+
+        .dialog_container .main_c{
+            height: 0.6rem;
+            text-align: center;
+            margin-top:0.26rem;
+        }
+
+        .dialog_container  .submit ,.dialog_container .cancel {
+            color: #FF7206;
+        }
+
+        .dialog_container .bottom_c{
+            height: 0.4rem;
+            border-top:1px solid #ddd ;
+        }
+        .dialog_container .bottom_c button:first-child{
+            border-right:1px solid #ddd ;
+        }
+        .dialog_container .bottom_c button{
+            width: 50%;
+            height: 100%;
+            float: left;
+            border: none;
+            box-sizing: border-box;
+            background: none;
+            outline: none;
+        }
+        .mark_container {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            background: #000;
+            opacity: 0.5;
+            z-index: 30
+        }
+        .button_more{
+            width: 3.54rem;
+            height: 0.58rem;
+            padding-bottom: 0.05rem;
+        }
+        .button_more02{
+            width: 3.59rem;
+            height: 0.59rem;
+            padding-left: 0.08rem;
+            padding-bottom: 0.05rem;
+        }
+        .button_more03{
+            width: 3.59rem;
+            height: 0.59rem;
+            padding: 0.05rem 0;
+            padding-left: 0.08rem;
+        }
+        
+
+

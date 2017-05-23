@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="x5-page-mode" content="app">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="layoutmode" content="standard">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-title" content="">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title></title>
+    <script type="text/javascript" src="./js/access.js"></script>
+    <style type="text/css" media="screen">
+        body,
+        div,
+        dl,
+        dt,
+        dd,
+        ul,
+        ol,
+        li,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        pre,
+        code,
+        form,
+        fieldset,
+        legend,
+        input,
+        textarea,
+        p,
+        aside,
+        blockquote,
+        th,
+        td,
+        span,
+        i,
+        b,
+        img {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+        }
+        
+        html,
+        body {
+            min-height: 100%;
+            width: 100%;
+        }
+        
+        html {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -o-user-select: none;
+            user-select: none;
+        }
+        
+        body {
+            position: relative;
+            -webkit-text-size-adjust: 100%;
+        }
+        
+        :focus {
+            outline: 0;
+            box-shadow: none
+        }
+        
+        a,
+        input,
+        select,
+        textarea,
+        button {
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+        
+        a {
+            text-decoration: none;
+            outline: none;
+            font-weight: normal;
+            border: 0;
+        }
+        
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+        
+        ol,
+        ul,
+        li {
+            list-style: none;
+            vertical-align: middle;
+        }
+        
+        input,
+        textarea {
+            outline: none;
+            -webkit-appearance: none;
+            resize: none;
+        }
+        
+        img,
+        button,
+        input,
+        textarea {
+            border: none;
+        }
+        
+        @media screen and ( min-width: 320px) and ( max-width: 359px) {
+            html {
+                font-size: 14px;
+            }
+        }
+        
+        @media screen and ( min-width: 360px) and ( max-width: 374px) {
+            html {
+                font-size: 13px;
+            }
+        }
+        
+        @media screen and ( min-width: 375px) and ( max-width: 479px) {
+            html {
+                font-size: 15px;
+            }
+        }
+        
+        @media screen and ( min-width: 480px) and ( max-width: 539px) {
+            html {
+                font-size: 17px;
+            }
+        }
+        
+        @media screen and ( min-width: 540px) and ( max-width: 639px) {
+            html {
+                font-size: 19px;
+            }
+        }
+        
+        @media screen and ( min-width: 640px) {
+            html {
+                font-size: 24px;
+            }
+        }
+        
+        .m-row {
+            display: table;
+            width: 100%;
+            background: #fff;
+        }
+        
+        .m-row:before {
+            content: '';
+            display: table-row;
+            width: 100%;
+        }
+        
+        .m-row .m-cell {
+            display: table-cell;
+            vertical-align: middle;
+        }
+        
+        .m-row .m-cell.m-cell-top {
+            vertical-align: top;
+        }
+        
+        .float-order-btn {
+            display: block;
+            width: 100%;
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            height: 4.6rem;
+            line-height: 3.27rem;
+            font-size: 1.2rem;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        
+        .float-order-btn img {
+            display: block;
+            width: 100%;
+        }
+    </style>
+    <style type="text/css" media="screen">
+        body {
+            background-color: #f7f7f7;
+            color: #5f5f5f;
+            font-family: '微软雅黑', 'PingFang cs'
+        }
+        
+        .card {
+            margin-top: 1rem;
+            background-color: #ffffff;
+            padding: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 0.1rem solid #dddddd;
+        }
+        
+        .card .text {
+            margin-bottom: 0.6rem;
+        }
+        
+        .card .text span:first-child {
+            text-align: left;
+        }
+        
+        .card .text span:last-child {
+            text-align: right;
+            float: right;
+        }
+        
+        .card .box {
+            background-color: #ffecde;
+            margin-top: 0.5rem;
+            padding: 1.7rem 0rem;
+        }
+        
+        .card .box .top {
+            padding-left: 1rem;
+            padding-right: 1rem;
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: space-around;
+            align-items: center;
+        }
+        
+        .card .box .top span {
+            line-height: 2rem;
+        }
+        
+        .card .box .top img {
+            height: 1.5rem;
+        }
+        
+        .to {
+            display: inline-block;
+            height: 1rem !important;
+        }
+        
+        .card .box p {
+            text-align: center;
+            margin-top: 1rem;
+            line-height: 2rem;
+        }
+        
+        .address {
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            padding: 0.6rem 0rem;
+            background-color: #ffffff;
+            border-top: 0.1rem solid #dddddd;
+            border-bottom: 0.1rem solid #dddddd;
+        }
+        
+        .address p span:first-child {
+            width: 5rem;
+            display: inline-block;
+            line-height: 1.5rem;
+            margin-left: 1rem;
+        }
+        
+        .get-address {
+            line-height: 1.5rem;
+            overflow: hidden;
+        }
+        
+        .get-address div {
+            float: left;
+        }
+        
+        .get-address div:first-child {
+            width: 5rem;
+            display: inline-block;
+            margin-left: 1rem;
+        }
+        
+        .get-address div:last-child {
+            max-width: 15rem;
+            display: inline-block;
+        }
+        
+        .address-size {
+            font-size: 12px;
+        }
+        
+        .address p div {
+            display: inline-block;
+        }
+        
+        .address hr {
+            margin-top: 0.6rem;
+            margin-bottom: 0.6rem;
+            background-color: #dddddd;
+            height: 1px;
+            border: none;
+        }
+        
+        .info {
+            padding: 0.6rem 1rem;
+            background-color: #ffffff;
+            border-bottom: 0.1rem solid #dddddd;
+        }
+        
+        .info p span {
+            display: inline-block;
+            line-height: 1.5rem;
+        }
+        
+        .info p div {
+            display: inline-block;
+        }
+        
+        .info hr {
+            margin-left: 6rem;
+            margin-top: 0.6rem;
+            margin-bottom: 0.6rem;
+            background-color: #dddddd;
+            height: 1px;
+            border: none;
+        }
+        
+        .card-id {
+            margin: 1rem 0;
+            background-color: #ffffff;
+            line-height: 2.8rem;
+            border-top: 0.1rem solid #dddddd;
+            border-bottom: 0.1rem solid #dddddd;
+            text-indent: 1rem;
+        }
+        
+        .invoice .choice {
+            border-top: 0.1rem solid #dddddd;
+            border-bottom: 0.1rem solid #dddddd;
+            padding: 1.6rem 1rem;
+            background-color: #ffffff;
+        }
+        
+        .invoice .choice span:last-child {
+            /*border: 0.12rem solid #ff7206;*/
+            /*border-radius: 0.4rem;*/
+            margin-left: 1rem;
+            padding: 0.4rem 1.4rem;
+            /*background-color: #fff2e9;*/
+            color: #ff7206;
+        }
+        
+        .invoice .note {
+            text-align: center;
+            font-size: 0.6rem;
+            line-height: 2rem;
+            color: #ff7206;
+        }
+        
+        .invoice .company {
+            padding: 0.8rem 1rem;
+            background-color: #ffffff;
+            border-top: 0.1rem solid #dddddd;
+            border-bottom: 0.1rem solid #dddddd;
+            line-height: 1.8rem;
+            position: relative;
+            top: -0.8rem;
+            overflow: hidden;
+        }
+        
+        .invoice .company hr {
+            background-color: #dddddd;
+            height: 0.1rem;
+            border: none;
+            margin-top: 2.5rem;
+            clear: both;
+        }
+        
+        .invoice .company>div>div {
+            float: left;
+        }
+        
+        .line {
+            max-width: 15rem;
+        }
+        
+        .get-car-address {
+            border-top: 0.1rem solid #dddddd;
+            border-bottom: 0.1rem solid #dddddd;
+            margin-top: 1rem;
+            background-color: #ffffff;
+        }
+        
+        .get-car-address p {
+            padding: 1rem;
+        }
+        
+        .get-car-address p:last-child {
+            text-align: center;
+            line-height: 1.5rem;
+        }
+        
+        .get-car-address p:last-child img {
+            width: 1.3rem;
+            position: relative;
+            top: 0.4rem;
+            left: -0.4rem;
+        }
+        
+        .get-car-address hr {
+            margin-top: 0.3rem;
+            margin-bottom: 0rem;
+            background-color: #dddddd;
+            height: 1px;
+            border: none;
+        }
+        
+        .money {
+            margin-top: 1rem;
+            background-color: #ffffff;
+            padding: 1rem;
+            line-height: 2rem;
+            border-radius: 2px;
+        }
+        
+        .money .title img {
+            width: 1.2rem;
+            position: relative;
+            top: 0.2rem;
+            left: -0.3rem;
+        }
+        
+        .money .data {
+            margin-top: 1rem;
+            padding: 1rem 1.8rem;
+            background-color: #fff2e9;
+        }
+        
+        .money .data div {
+            height: 8rem;
+        }
+        
+        .money .data p {
+            overflow: hidden;
+        }
+        
+        .money .data p span:first-child {
+            display: inline-block;
+            width: 9rem;
+        }
+        
+        .money .data p span:last-child {
+            color: #ff7206;
+        }
+        
+        .unpay {
+            margin: 2rem 1rem;
+            background-color: #FFC200;
+            line-height: 3rem;
+            text-align: center;
+            border-radius: 0.3rem;
+            color: #ffffff;
+        }
+        
+        .pay {
+            margin: 2rem 1rem;
+            background-color: #ff7206;
+            line-height: 3rem;
+            text-align: center;
+            border-radius: 0.3rem;
+            color: #ffffff;
+        }
+        
+        .paied {
+            margin: 2rem 1rem;
+            background-color: #9b9b9b;
+            line-height: 3rem;
+            text-align: center;
+            border-radius: 0.3rem;
+            color: #ffffff;
+        }
+        .delOrder{
+            margin: 2rem 1rem;
+            background-color: #9b9b9b;
+            line-height: 3rem;
+            text-align: center;
+            border-radius: 0.3rem;
+            color: #ffffff;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="content"></div>
+    <div id="deleteOrder"></div>
+    <script type="text/javascript" src="./js/ajax.js?v=20160920"></script>
+    <script type="text/javascript">
+        "use strict";
+
+        //参数
+        var host = 'https://192.168.30.1:8084';//测试地址
+        var host = getHost();
+        var url = '/logistics/detail';
+        var orderId = getQueryString('orderId');
+        var token = getQueryString('token');
+        var orderMoney = 0;
+
+        //设置host
+        function getHost(){
+            var oldUrl = document.domain;
+            var num = oldUrl.lastIndexOf('.');
+            var newUrl = oldUrl.substring(num+1,oldUrl.length);
+            if(newUrl == 'com'){
+                var host="https://api.cyb.kuaiqiangche.com";
+            }else{
+                var host="https://api.cyb.kuaiqiangche.cc";
+            }
+            return host;
+        }
+
+        //获取url参数
+        function getQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]); return null;
+        }
+
+        //最上方卡片模板
+        function Card(orderFrom, orderTo, orderItems, orderTime) {
+            var item = '';
+            orderItems.forEach(function(e, i){
+                var carInfo = e.carInfo?e.carInfo:"自定义车型";
+                item += carInfo + '(' + e.carNum + ')' + '<br />';
+            })
+            var _template = "<div class=\"text\"><span>" + orderTime + "</span><span></span></div><div class=\"box\">\n                <div class=\"top\">\n                    <img src=\"data:image/png;base64,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\" /> \n                    <span>" + orderFrom + "</span>\n                    <img class=\"to\" src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPwAAAAtCAYAAACKyQbtAAAAAXNSR0IArs4c6QAAAmBJREFUeAHt3LFqFEEYB/CZiF4sDhVs1CogvoNWvoRVHsHuFA0EIU8ghLyFraWNjbW9ha2NpI+QG7cwhJhsdnbvZnbD/dLkdveb/WZ/H39ycFxC8EOAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIEDghgqkT69ujbX1OFZjfQlsokBazA5DSK+bZ/8eQtyNH09+1HQQ+Jraem20QHq7vROWy5/nCPFX8/plzdBvnTf3igCBogIpPrl4//SoOf7a/NV/dvF8uSOBL2frzgQyBOqGXuAzRqKEQFmBeqEX+LKTdHcCmQJ1Qi/wmeNQRqC8QPnQC3z5KepAoIdA2dALfI9RKCVQR6Bc6AW+zgR1IdBToEzoBb7nGJQTqCew/tALfL3p6URggMB6Qy/wA0ZgCYG6AusLvcDXnZxumyyQlveHP/56Qi/wwydgJYFsgbR370GI4X32gisLVw/9td+WS4s7H0KMu03v7Sv7O0mAQJ5ASo+bwtt5xV1Vw79l1xr4tLj7IoTTb12tXSdAYAyBYaFvf0sf084Yj6EnAQI5AsPe3rcHPqenGgIERhToH3qBH3FcWhNYXaBf6AV+dXF3IDCywL/Q782edm1E4LuEXCdwIwSa0P8JR11bvSbw6bhrsesECExJIP33P/Mu76098PPnX5rP4D9fXuIMAQKTE4jxd9iK+137av0c/mxhevdwHk5PZmfHfhMgMEGB+ZvjeHCwnODObIkAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIDAFAX+AloBcS93d/8BAAAAAElFTkSuQmCC\" />\n                    <img src=\"data:image/png;base64,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\" /><span>" + orderTo + "</span>\n                </div>\n                <p>" + item + "</p>\n            </div>";
+            var _node = document.createElement("div");
+            _node.className = 'card';
+            _node.innerHTML = _template;
+            return _node;
+        }
+        
+        //地址模板
+        function Address(getAddress, sentAddress){
+            var _template = "<div class=\"get-address\"><div>提车地点：</div><div>" + getAddress + "</div></div><hr style=\"clear:both\" /><p class=\"address-size\"><span>送车到家：</span><span>" + (sentAddress?'需送车':'无需送车') + "</span></p>";
+            var _node = document.createElement("div");
+            _node.className = 'address';
+            _node.innerHTML = _template;
+            return _node;
+        }
+
+        //收车人发车人模板
+        function Info(type, name, number) {
+            var _template = "<p><span>" + (type ? '发车人' : '收车人') + "姓名：</span><span>" + name + "</span></p><hr /><p><span>" + (type ? '发车人' : '收车人') + "电话：</span><span>" + number + "</span></p>";
+            var _node = document.createElement("div");
+            _node.className = 'info';
+            _node.innerHTML = _template;
+            return _node;
+        }
+
+        //身份证号码模板
+        function CardId(id) {
+            var _template = "收车人身份证号：" + id;
+            var _node = document.createElement("div");
+            _node.className = 'card-id';
+            _node.innerHTML = _template;
+            return _node;
+        }
+
+        //是否开发票模板
+        function Invoice(type, invoice) {
+            var _template1 = "<div class=\"choice\"><span>发票选择：</span><span>开具发票</span></div><div class=\"company\"><div><div>发票抬头：</div><div class=\"line\">"+invoice.company+"</div></div><hr /><div><div>寄送地址：</div><div class=\"line\">"+invoice.address+"</div></div></div>";
+            var _template2 = "<div class=\"choice\"><span>发票选择：</span><span style=\"color: #5f5f5f;\">无需发票</span></div>";
+            var _node = document.createElement("div");
+            _node.className = 'invoice';
+            _node.innerHTML = type ? _template1 : _template2;
+            return _node;
+        }
+
+        //提车地点模板
+        function GetCarAddress(address) {
+            var _template = "<p>提车地点：</p><hr /><p>" + address + "</p>";
+            var _node = document.createElement("div");
+            _node.className = 'get-car-address';
+            _node.innerHTML = _template;
+            return _node;
+        }
+
+        //送车地点模板
+        function SendCarAddress(address) {
+            var _template = "<p>送车到家：</p><hr /><p><img src=\"data:image/png;base64,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\" />" + address + "</p>";
+            var _node = document.createElement("div");
+            _node.className = 'get-car-address';
+            _node.innerHTML = _template;
+            return _node;
+        }
+
+        //费用模板
+        function Money(logistics, insurance, invoice, total, status) {
+            var tem = status?"<p><span>主线：</span><span>" + logistics + "</span></p><p><span>保费：</span><span>" + insurance + "</span></p><p><span>税金：</span><span>" + invoice + "</span></p><p><span>和计：</span><span>" + total + "</span></p>" : '<div>您的物流线路特殊将有专人与你联系协商费用。请提交物流订单。</div>';
+            var _template = "<div class=\"title\"><img src=\"data:image/png;base64,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\" /><span>订单费用</span></div><div class=\"data\">" + tem + "</div>";
+            var _node = document.createElement("div");
+            _node.className = 'money';
+            _node.innerHTML = _template;
+            return _node;
+        }
+        //生成取消订单按钮
+        function delButton(){
+            var DELETEORDER=document.getElementById("deleteOrder");
+            var _template='<div class="delOrder">取消订单</div>';
+            DELETEORDER.innerHTML = _template;         
+        }
+        //是否支付模板
+        function Pay(status) {
+            var _template0 = "等待报价";
+            var _template1 = "等待完善信息、启用物流";
+            var _template2 = "立即支付";
+            var _template3 = "已经支付 待验车";
+            var _template4 = "已支付(运输中)";
+            var _node = document.createElement("div");
+            if (status === 0){
+                _node.className = 'unpay';
+                _node.innerHTML = _template0;
+                delButton();
+            } else if (status === 1) {
+                _node.className = 'unpay';
+                _node.innerHTML = _template1;
+                delButton();
+            } else if (status === 2) {
+                _node.className = 'pay';
+                _node.innerHTML = _template2;
+                delButton();
+            } else if (status === 3) {
+                _node.className = 'paied';
+                _node.innerHTML = _template3;
+            } else if (status === 4) {
+                _node.className = 'paied';
+                _node.innerHTML = _template4;
+            }
+            return _node;
+        }
+        // 获取数据
+        ajax({
+            url: host + url + '?token=' + token + '&orderId=' + orderId,
+            type:"GET",
+            dataType:"json",
+            success: function (res, xml) {
+                var dataNode = res.data;
+                var date = new Date(dataNode.orderTime * 1000);
+                var time = date.getFullYear() + "年" + (date.getMonth()+1) + "月" + date.getDate() + "日";
+                var nodeCard = new Card(dataNode.orderFrom, dataNode.orderTo, dataNode.orderItems, time);
+                var nodeAddress = new Address(dataNode.getCarAddress,dataNode.sendCar);
+                var nodeInfo1 = new Info(1, dataNode.orderFromName, dataNode.orderFromNumber);
+                var nodeInfo2 = new Info(0, dataNode.orderToName, dataNode.orderToNumber);
+                var nodeCardId = new CardId(dataNode.orderToIdCard);
+                var nodeInvoice = new Invoice(dataNode.ifInvoice, dataNode.invoice);
+                var nodeGetCarAddress = new GetCarAddress(dataNode.getCarAddress);
+                var nodeSendCarAddress = new SendCarAddress(dataNode.sendCarAddress);
+                var nodeMoney = new Money(dataNode.money.logistics, dataNode.money.insurance, dataNode.money.invoice, dataNode.money.total, dataNode.status);
+                var nodePay = new Pay(dataNode.status);
+                var content = document.getElementById('content');
+                content.appendChild(nodeCard);
+                content.appendChild(nodeAddress);
+                content.appendChild(nodeInfo1);
+                content.appendChild(nodeInfo2);
+                content.appendChild(nodeCardId);
+                content.appendChild(nodeInvoice);
+                // if (dataNode.sendCar) {
+                //     content.appendChild(nodeSendCarAddress);
+                // }else {
+                //     content.appendChild(nodeGetCarAddress);
+                // }
+                content.appendChild(nodeMoney);
+                content.appendChild(nodePay);
+                orderMoney = dataNode.money.total;
+            },
+            fail: function (status) {
+            }
+        })
+
+        //判断浏览器
+        var browser={
+            versions:function(){
+                var u = navigator.userAgent, app = navigator.appVersion;
+                return {         //移动终端浏览器版本信息
+                    trident: u.indexOf('Trident') > -1, //IE内核
+                    presto: u.indexOf('Presto') > -1, //opera内核
+                    webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+                    gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+                    mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+                    ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                    android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或uc浏览器
+                    iPhone: u.indexOf('iPhone') > -1 , //是否为iPhone或者QQHD浏览器
+                    iPad: u.indexOf('iPad') > -1, //是否iPad
+                    webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
+                };
+            }(),
+            language:(navigator.browserLanguage || navigator.language).toLowerCase()
+        }
+
+        //获取节点
+        var content = document.getElementById('content');
+        content.addEventListener("click", function(e){
+            if (e.target.classList.contains("pay")) {
+                if(browser.versions.ios){
+                    immediatelyPay(orderId, orderMoney);
+                }else if (browser.versions.android) {
+                    NewJavaInjectedUtils.immediatelyPay(orderId, orderMoney);
+                }
+            }
+        })
+        //取消订单
+        var DELETEORDER = document.getElementById('deleteOrder');
+        DELETEORDER.addEventListener("click", function(e){
+            if (e.target.classList.contains("delOrder")) {
+                if(browser.versions.ios){
+                    cancelOrderItem(orderId);
+                }else if (browser.versions.android) {
+                    NewJavaInjectedUtils.cancelOrderItem(orderId);
+                }
+            }
+        })
+        // document.writeln("语言版本: "+browser.language);
+        // document.writeln(" 是否为移动终端: "+browser.versions.mobile);
+        // document.writeln(" ios终端: "+browser.versions.ios);
+        // document.writeln(" android终端: "+browser.versions.android);
+        // document.writeln(" 是否为iPhone: "+browser.versions.iPhone);
+        // document.writeln(" 是否iPad: "+browser.versions.iPad);
+        // document.writeln(navigator.userAgent);
+    </script>
+</body>
+
+</html>

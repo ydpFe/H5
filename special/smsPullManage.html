@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1, minimum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="x5-page-mode" content="app">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="layoutmode" content="standard">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-title" content="">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>车源管理</title>
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <script type="text/javascript">
+        /**
+         * 计算根元素大小
+         */
+        var deviceWidth = document.documentElement.clientWidth;
+        document.documentElement.style.fontSize = deviceWidth / 3.75 + 'px';
+        window.onresize = function() {
+            var deviceWidth = document.documentElement.clientWidth;
+            document.documentElement.style.fontSize = deviceWidth / 3.75 + 'px';
+        };
+    </script>
+    <style>
+        body,
+        ul,
+        ol,
+        li,
+        form,
+        button,
+        input,
+        textarea,
+        th,
+        span,
+        p,
+        td {
+            margin: 0;
+            padding: 0
+        }
+        ul,li{list-style: none;}
+        body {
+            font-size:0.15rem;
+            font-family: '微软雅黑', 'PingFang SC';
+            background: #F7F7F7;
+            color: #333;
+        }
+        .flex{
+            display: -webkit-box;  /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+            display: -moz-box;     /* 老版本语法: Firefox (buggy) */
+            display: -ms-flexbox;  /* 混合版本语法: IE 10 */
+            display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+            display: flex;         /* 新版本语法: Opera 12.1, Firefox 22+ */
+        }
+        .ellipsisObj {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .headerBox{
+            background:#FEE5D2;
+            height:0.3rem;
+            z-index: 30;
+            width: 100%;
+        }
+        .headerTitle{
+            color: #FF7206;
+            font-size: 0.13rem;
+        }
+        .overFlow{
+            overflow: auto;
+        }
+        .g-c-center {
+            display: -webkit-box;  /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+            display: -moz-box;     /* 老版本语法: Firefox (buggy) */
+            display: -ms-flexbox;  /* 混合版本语法: IE 10 */
+            display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+            display: flex;         /* 新版本语法: Opera 12.1, Firefox 22+ */
+
+            flex-direction: column;
+            -webkit-box-flex:1;  /* OLD - iOS 6-, Safari 3.1-6 */  
+            -moz-box-flex:1;     /* OLD - Firefox 19- */              
+            -webkit-flex: 1;      /* Chrome */  
+            -ms-flex: 1 ;          /* IE 10 */  
+            flex: 1;              /* NEW, Spec - Opera 12.1, Firefox 20+ */
+            box-flex:1;
+
+            align-items:center;
+            -webkit-align-items:center;
+            box-align:center;
+            -moz-box-align:center;
+            -webkit-box-align:center;
+
+            -webkit-justify-content:center;
+            justify-content:center;
+            -moz-box-pack:center;
+            -webkit--moz-box-pack:center;
+            box-pack:center;
+        }
+        .g-r-center {
+            display: -webkit-box;  /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+            display: -moz-box;     /* 老版本语法: Firefox (buggy) */
+            display: -ms-flexbox;  /* 混合版本语法: IE 10 */
+            display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+            display: flex;         /* 新版本语法: Opera 12.1, Firefox 22+ */
+
+            -webkit-box-flex:1;  /* OLD - iOS 6-, Safari 3.1-6 */  
+            -moz-box-flex:1;     /* OLD - Firefox 19- */              
+            -webkit-flex: 1;      /* Chrome */  
+            -ms-flex: 1 ;          /* IE 10 */  
+            flex: 1;              /* NEW, Spec - Opera 12.1, Firefox 20+ */
+            box-flex:1;
+
+            align-items:center;
+            -webkit-align-items:center;
+            box-align:center;
+            -moz-box-align:center;
+            -webkit-box-align:center;
+
+            -webkit-justify-content:center;
+            justify-content:center;
+            -moz-box-pack:center;
+            -webkit--moz-box-pack:center;
+            box-pack:center;
+        }
+        .btnGroupBox{
+            display: -webkit-box;  /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+            display: -moz-box;     /* 老版本语法: Firefox (buggy) */
+            display: -ms-flexbox;  /* 混合版本语法: IE 10 */
+            display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+            display: flex;         /* 新版本语法: Opera 12.1, Firefox 22+ */
+
+            background: #fff;
+            height:0.49rem;
+            border-bottom:#EFEFEF 1px solid;
+            margin-bottom:0.1rem;
+        }
+        .btnSell{
+            width:50%;
+            display: -webkit-box;  /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+            display: -moz-box;     /* 老版本语法: Firefox (buggy) */
+            display: -ms-flexbox;  /* 混合版本语法: IE 10 */
+            display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+            display: flex;         /* 新版本语法: Opera 12.1, Firefox 22+ */
+
+            border-right:#EFEFEF 1px solid;
+            align-items:center;
+            -webkit-align-items:center;
+            box-align:center;
+            -moz-box-align:center;
+            -webkit-box-align:center;
+
+            -webkit-justify-content:center;
+            justify-content:center;
+            -moz-box-pack:center;
+            -webkit--moz-box-pack:center;
+            box-pack:center;
+        }
+        .goodsBox{
+            background:#fff;
+            margin-bottom: 0.1rem;
+        }
+        .goodsBottom{
+            height:0.49rem;
+            border-bottom:#EFEFEF 1px solid;
+            display: -webkit-box;  /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+            display: -moz-box;     /* 老版本语法: Firefox (buggy) */
+            display: -ms-flexbox;  /* 混合版本语法: IE 10 */
+            display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+            display: flex;         /* 新版本语法: Opera 12.1, Firefox 22+ */
+
+            align-items:center;
+            -webkit-align-items:center;
+            box-align:center;
+            -moz-box-align:center;
+            -webkit-box-align:center;
+
+            -webkit-justify-content:flex-end;
+            justify-content:flex-end;
+            -moz-box-pack:flex-end;
+            -webkit--moz-box-pack:flex-end;
+            box-pack:flex-end;
+        }
+        .goodsBottomBtn{
+            border: 1px solid #999999;
+            border-radius: 0.04rem;
+            padding:0.06rem 0.23rem;
+            margin-right: 0.06rem;
+            font-size:0.14rem;
+        }
+        .goodsTop{
+            padding:0 0.16rem;
+            border-bottom:#EFEFEF 1px solid;
+        }
+        .goodsGroup01{
+            display: -webkit-box;  /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+            display: -moz-box;     /* 老版本语法: Firefox (buggy) */
+            display: -ms-flexbox;  /* 混合版本语法: IE 10 */
+            display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+            display: flex;         /* 新版本语法: Opera 12.1, Firefox 22+ */
+            padding:0.11rem 0 0.04rem 0;
+        }
+        .goodsName{
+            width:2.6rem;
+        }
+        .goodsPrice{
+            margin-left: auto;
+        }
+        .goodsGroup02{
+            display: -webkit-box;  /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+            display: -moz-box;     /* 老版本语法: Firefox (buggy) */
+            display: -ms-flexbox;  /* 混合版本语法: IE 10 */
+            display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+            display: flex;         /* 新版本语法: Opera 12.1, Firefox 22+ */
+        }
+        .goodsDetail{
+            font-size: 0.14rem;
+            width:1.5rem;
+        }
+        .goodsZdPrice{
+            font-size: 0.13rem;
+            margin-left: auto;
+            color: #999;
+        }
+        .goodsGroup03{
+            display: -webkit-box;  /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+            display: -moz-box;     /* 老版本语法: Firefox (buggy) */
+            display: -ms-flexbox;  /* 混合版本语法: IE 10 */
+            display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+            display: flex;         /* 新版本语法: Opera 12.1, Firefox 22+ */
+            padding:0.04rem 0 0.09rem 0;
+        }
+        .goodsType{
+            font-size: 0.14rem;
+        }
+        .goodsColor{
+            margin-left: 0.19rem;
+            font-size: 0.14rem;
+        }
+        .goodsTime{
+            margin-left: auto;
+            font-size: 0.13rem;
+            color: #999;
+        }
+        .footerObj{
+            position: fixed;
+            bottom:0;
+            background: #fff;
+            width:100%;
+            display: -webkit-box;  /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+            display: -moz-box;     /* 老版本语法: Firefox (buggy) */
+            display: -ms-flexbox;  /* 混合版本语法: IE 10 */
+            display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+            display: flex;         /* 新版本语法: Opera 12.1, Firefox 22+ */
+            height:0.5rem;
+            border-top:#EFEFEF 1px solid;
+        }
+        .footerBtn{
+            width:33%;
+            display: -webkit-box;  /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+            display: -moz-box;     /* 老版本语法: Firefox (buggy) */
+            display: -ms-flexbox;  /* 混合版本语法: IE 10 */
+            display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+            display: flex;         /* 新版本语法: Opera 12.1, Firefox 22+ */
+            align-items:center;
+            -webkit-align-items:center;
+            box-align:center;
+            -moz-box-align:center;
+            -webkit-box-align:center;
+            -webkit-justify-content:center;
+            justify-content:center;
+            -moz-box-pack:center;
+            -webkit--moz-box-pack:center;
+            box-pack:center;
+        }
+        .borderRight{
+            border-right:#EFEFEF 1px solid;
+        }
+        .center{
+            padding-bottom:0.5rem;
+        }
+        #popup {
+            background: #000;
+            opacity: 0.8;
+            z-index: 20;
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100vw;
+            height: 100vh;
+            display: none;
+        }
+        .popupText{
+            color: #fff;
+            margin:2.48rem 0.2rem 0 0.2rem;
+            z-index: 25;
+        }
+        .popupBtn{
+            color: #fff;
+            width: 1.4rem;
+            height: 0.4rem;
+            background: #FF7206;
+            display: -webkit-box;  /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+            display: -moz-box;     /* 老版本语法: Firefox (buggy) */
+            display: -ms-flexbox;  /* 混合版本语法: IE 10 */
+            display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+            display: flex;         /* 新版本语法: Opera 12.1, Firefox 22+ */
+
+            align-items:center;
+            -webkit-align-items:center;
+            box-align:center;
+            -moz-box-align:center;
+            -webkit-box-align:center;
+
+            -webkit-justify-content:center;
+            justify-content:center;
+            -moz-box-pack:center;
+            -webkit--moz-box-pack:center;
+            box-pack:center;
+            margin: 0 auto;
+            border-radius: 0.04rem;
+            margin-top: 0.3rem;
+            z-index: 25;
+        }
+        .color_ff7206{
+            color: #FF7206;
+        }
+        .border_ff7206{
+            border:#FF7206 1px solid;
+        }
+        .showPopup{
+
+        }
+        #icon01{
+            width: 0.21rem;
+            height: 0.21rem;
+            margin-right: 0.05rem;
+        }
+        #icon02{
+            width: 0.22rem;
+            height: 0.22rem;
+            margin-right: 0.05rem;
+        }
+        #icon03{
+            width: 0.22rem;
+            height: 0.22rem;
+            margin-right: 0.05rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="warp">
+        <header class="headerBox g-r-center">
+            <div class="headerTitle">上架资源超过7天将自动下架</div>
+        </header>
+        <!--center-->
+        <div class="center">
+            <div class="btnGroupBox">
+                <div class="btnSell color_ff7206 showPopup">在售(<span id="onSell"></span>)</div>
+                <div class="btnSell showPopup">下架(<span id="down"></span>)</div>
+            </div>
+            <div id="goodsMsgBox">
+
+            </div>
+        </div>
+         <!--center end-->
+         <footer class="footerObj">
+             <div class="footerBtn borderRight showPopup">
+                 <img src="" id="icon01"/>
+                 <span>批量分享</span>
+             </div>
+             <div class="footerBtn borderRight showPopup">
+                 <img src="" id="icon02"/>
+                 <span>发布车源</span>
+             </div>
+             <div class="footerBtn showPopup">
+                 <img src="" id="icon03"/>
+                 <span>批量刷新</span>
+             </div>
+         </footer>
+         <!--弹窗-->
+         <div id="popup">
+            <div class="popupText">登陆<span class="color_ff7206">车源宝</span>更新置顶您的车源，这里有8000+实名认证商家将成为您的优质销售渠道。</div>
+            <div class="popupBtn" id="popupBtn">立即下载车源宝</div>
+         </div>
+    </div>
+    <script src="js/clipboard.min.js"></script>
+    <script src="js/ajax.js"></script>
+    <script>
+        window.onload=function(){
+            //渲染页面
+            var showpage=function(){
+                var car_no=getFinal();
+                //在售车源
+                ajax({
+                    type: "GET",
+                    url: getHOST() + "/car/manage_for_h5?car_no="+car_no.car_no,
+                    dataType: "json",
+                    data: {},
+                    success: function (data) {
+                        if(data.code==0){
+                            var datas=data.data;
+                            //在售数量
+                            var onSell=document.getElementById("onSell");
+                            onSell.innerHTML=datas.on_sale;
+                            //下架数量
+                            var down=document.getElementById("down");
+                            down.innerHTML=datas.down;
+
+                            //渲染车源
+                            var goodsMsgBox=document.getElementById("goodsMsgBox");
+                            var obj=datas.data;
+                            for(var i=0;i<obj.length;i++){
+                                var dealPrice=(obj[i].deal_price/10000).toFixed(3);
+                                var price=(obj[i].price/10000).toFixed(3);
+                                var discount_typeObj="";
+                                if(obj[i].discount_type==1){
+                                    discount_typeObj="优惠"+obj[i].discount_value+"点";
+                                }else if(obj[i].discount_type==2){
+                                    discount_typeObj="优惠"+obj[i].discount_value+"万";
+                                }else if(obj[i].discount_type==3){
+                                    discount_typeObj="加价"+obj[i].discount_value+"万";
+                                }else if(obj[i].discount_type==4){
+                                    discount_typeObj="报价"+obj[i].discount_value+"万";
+                                }
+                                var channel="";
+                                if(obj[i].stype==1){
+                                    channel="中规";
+                                }else if(obj[i].stype==2){
+                                    channel="美规";
+                                }else if(obj[i].stype==4){
+                                    channel="欧版";
+                                }else if(obj[i].stype==8){
+                                    channel="加版";
+                                }else if(obj[i].stype==16){
+                                    channel="中东版";
+                                }else if(obj[i].stype==32){
+                                    channel="墨西哥版";
+                                }   
+                                var html="<div class='goodsBox'>\
+                                    <div class='goodsTop'>\
+                                        <div class='goodsGroup01'>\
+                                            <div class='goodsName ellipsisObj'>"+obj[i].bname+" "+obj[i].csname+"</div>\
+                                            <div class='goodsPrice'>"+dealPrice.substring(0,dealPrice.lastIndexOf('.')+3)+"万</div>\
+                                        </div>\
+                                        <div class='goodsGroup02'>\
+                                            <div class='goodsDetail ellipsisObj'>"+obj[i].tname+"</div>\
+                                            <div class='goodsZdPrice ellipsisObj'>指导价:"+price.substring(0,dealPrice.lastIndexOf('.')+3)+"万/"+discount_typeObj+"</div>\
+                                        </div>\
+                                        <div class='goodsGroup03'>\
+                                            <div class='goodsType'>"+channel+"</div>\
+                                            <div class='goodsColor'>"+obj[i].out_color+"/"+obj[i].in_color+"</div>\
+                                            <div class='goodsTime'>"+getDate(obj[i].shelves_at)+"</div>\
+                                        </div>\
+                                    </div>\
+                                    <div class='goodsBottom'>\
+                                        <div class='goodsBottomBtn showPopup'>删除</div>\
+                                        <div class='goodsBottomBtn showPopup'>编辑</div>\
+                                        <div class='goodsBottomBtn color_ff7206 border_ff7206 showPopup'>下架</div>\
+                                    </div>\
+                                </div>";
+                                goodsMsgBox.innerHTML+=html;
+                            }//for end
+                            showPopup();
+                
+                        }
+                    }
+                })//ajax end
+            };
+            //车源管理-口令
+            var getPassword=function(){
+                var car_no=getFinal();
+                ajax({
+                    type: "GET",
+                    url: getHOST() + "/car/manage_password?car_no="+car_no.car_no,
+                    dataType: "json",
+                    data: {},
+                    success: function (data) {
+                        if(data.code==0){
+                            var datas=data.data;
+                            var system=selectSystem();
+                            var passwordObj="";
+                            if(system=="ios"){
+                                passwordObj=datas.ios;
+                            }else{
+                                passwordObj=datas.androidLink;
+                            }
+                            if(passwordObj!=""){
+                                var popupBtn=document.getElementById("popupBtn");
+                                popupBtn.setAttribute("data-clipboard-text",passwordObj);
+                                new Clipboard('.popupBtn');//调用复制插件
+                            }
+                        }
+                    }
+                })//ajax end
+            };
+            //弹出弹窗
+            var showPopup=function(){
+                var showPopup=document.getElementsByClassName("showPopup");
+                for(var i=0;i<showPopup.length;i++){
+                    showPopup[i].addEventListener("click",function(){
+                        var popup=document.getElementById("popup");
+                        popup.setAttribute("style","display:block");
+                    })
+                }
+            };
+            //取消弹窗
+            var delPopup=function(){
+                var popup=document.getElementById("popup");
+                popup.addEventListener("click",function(){
+                    popup.setAttribute("style","display:none");
+                })
+            };
+            //立即下载车源宝
+            var setBtn=function(){
+                var popupBtn=document.getElementById("popupBtn");
+                var system=selectSystem();
+                popupBtn.addEventListener("click",function(){
+                    if(system=="android"){
+                         window.location.href ="http://a.app.qq.com/o/simple.jsp?pkgname=com.kqc.b2b";
+                    }else{
+                         window.location.href = "https://itunes.apple.com/cn/app/id1071024901";;
+                    }
+                })
+            };
+            //设置icon
+            var setBottomMenuIcon=function(){
+                var icon01=document.getElementById("icon01");
+                icon01.setAttribute("src",setIcon01());
+                var icon02=document.getElementById("icon02");
+                icon02.setAttribute("src",setIcon02());
+                var icon03=document.getElementById("icon03");
+                icon03.setAttribute("src",setIcon03());
+            };
+            //init
+            (init=function(){
+                showpage();
+                delPopup();
+                setBtn();
+                getPassword();
+                setBottomMenuIcon();
+             }
+            ())
+    }
+    /**
+     * 获取HOST请求参数
+     * @returns {HOST}
+     */
+    function getHOST() {
+        var oldUrl = document.domain;
+        var num = oldUrl.lastIndexOf('.');
+        var newUrl = oldUrl.substring(num + 1, oldUrl.length);
+        if (newUrl == 'cc') {
+            var HOST = "https://api.cyb.kuaiqiangche.cc";
+        } else if (newUrl == 'com') {
+            var HOST = "https://api.cyb.kuaiqiangche.com";
+        } else {
+            var HOST = "https://dev.cyb.kuaiqiangche.cc";
+        }
+        return HOST;
+    }
+    /**
+     * 获取到传参的参数例如?id=1212
+     * @returns {obj}
+     */
+    var getFinal = function () {
+        var oldUrl = window.location.href;
+        var arr = (oldUrl.substring(oldUrl.lastIndexOf('?') + 1, oldUrl.length)).split('&');
+        // alert(arr)
+        var obj = {};
+        for (var i = 0; i < arr.length; i++) {
+            arr[i] = arr[i].split('=');
+            obj[arr[i][0]] = arr[i][1];
+        }
+
+        return obj;
+    };
+    /**
+     * 判断系统
+     */
+    function selectSystem(){
+        var ua = navigator.userAgent.toLowerCase();	
+        if (/iphone|ipad|ipod/.test(ua)) {
+                return "ios";		
+        } else if (/android/.test(ua)) {
+                return "android";	
+        }
+    }
+    /**
+     * 获取到时间戳转换为YYYYMMDD的格式
+     */
+    function getDate (a){
+        var a=Number(a);
+        if(a==null){
+        return "";
+        }
+        var date = new Date(a*1000);//*1000 转为毫秒处理
+        Y = date.getFullYear();
+        M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) ;
+        D = date.getDate() < 10 ? '0'+date.getDate() : date.getDate();
+        h = date.getHours() + ':';
+        m = date.getMinutes();
+        return Y+'/'+M+'/'+D+" "+h+m;
+    }
+    function setIcon01(){
+        var icon="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAA79JREFUaAXtWc9rE0EUziap8UeCVs01Bz2JP7A2iS0pGkQj1YAeDBbEQqEHL3rxD6j25L1XT4IoFlNKxVhbNJQUS9MqaPGmhSBeivXQRBLzy++FnbJuMtsmM9uK7MIwu/Pmfd/35s1OZic2m3Vt7wgoZtCHw+F92Wx2HNhH7Xb7jfn5+UkzeAhTegChUMiTz+engH26RqAoeQRxGUG8oWfZl10mYCQS2VMoFBLArIkn7Gq1urNcLk8EAoEzMrkYlrQMdHd37yoWiy8hOMzAdXXW4XBEkIl3unahRykZ6O3tdUH8uEb8Y6ZKUZTnuC+guJGJRDAY9DObjFo4gFgstmNlZSUO8RdIEAQ/8Xg8g0wc2qcx8tfwXETZiyBeYzqdZHbRWigArDbO5eXlZxB5iYRAfNztdvevra2VtcIwbV7gRe6DvYT29kqlMuX3+49p+7R6LxRALpcbgPgrRA5xE7jvSyaTJLLuSqfTcTTeRD8K7iD6Pqzr1EKDUAAQ8Q2cNL/HvF5vbHFxkaYJ91pYWHgK4wBKDuULt+NWGugF1vN1dna2oVTVcktvb+Sj77PZZ6EMEEkikaAMNHW14sMjEA6AB7xV7c6NiLBMOjKZTAArxymU/aw/VpUZvJgz7LmVmn6dgbn+Cw3MVZT3Pp8vPTo6+tdKxsM3DAAEh7BMPsLLGtIDoO0+2oQCAMY5YAwxbARjowLOWXD3Y4C+Mhuv5k4h2pQB7K1OfBVA2sLD3Wy7FovuaxdxEjdpYG28mpsBbMruwclHjkjrkMvlGkmlUj/pWdaFZZWySKV29fT0tIP3NsRTm0/VcFc1N6y4AWAUzqseY0jlcENvyY3qAA1j+e0A9FWNBi4TdwrB44jqNcv1Ns+QUqGZBi6TUQBtqtdvrrd5BsbJNHCZjALgOv1LBiuA7c6GlQErA4IjYMoUwi8sfZV9J234AssIajR0NyUAiK6iXMQW5Ho0Gn1lqEDQyN1KCOLakIUlYCxhGyIKZehvSgYMGSUbrQAkD2jTcFYGmh4yyQ5WBiQPaNNwVgaaHjLJDv91BmrfpdjP1B3eSh7EOjgNJ/s2ruvDGrgZwGbsM3XCGc1Z1nmrasbJNBjxcjdzcJ7EuQz9FRTFMd8Dp9M5gsOtH0ZgojYcZB3Af213wBslLNKwEabC64DDpd2wfUQ5zOtjcjv9AXICf5r8MuLhTiFyxKiHMQrTRgBm2IiTuDcST9zcDDBhSKfS1dV1vFQqdQB4/Xid2WXW4FqF8A9zc3OfwLV+2CuTw8KSPQJ/AG7JULXnGw3rAAAAAElFTkSuQmCC";
+        return icon;
+    }
+    function setIcon02(){
+        var icon="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAwCAYAAABT9ym6AAAABGdBTUEAALGPC/xhBQAAB4JJREFUaAXtWnlslFUQn/m2pd1S6q1cElTQKCQYCRASEzBqwINKgmK8g0JMTDzbAuLBigpCDyImJgY1mAhG1ETrhfqHmpggKmoiEC8i4bCiclhq793x997X3f3mO7a7tBRjfMl23xxv5jf7zbvmK9H/7d/1C/CxgiOJ0aXU8tswSvEw68ORJiof2sSJXe3Hwme/BSI1ZRdRsnsWMV1FQmMB9sQIwIeh8xN03qVY0dtc2/p1hF5B7D4FItXlpxN1LQKouSQysiDPaWXmvQhsI1HxSq5r+T3NLvT7qAKRhacOoVRLFaVSVXBYXqjTCP0Wcpx6csrredWfRyJ0ItkFByIPxK8nSj1DJKdFWu2TgP8gcu7mhrZXCzGTdyAiwlQdf4IktSTSAVMKsi34bAKYX5AyTZgHTVY/2T0MKYiJnzoL9Ex8poB2rCzsDzvLqa7tYWaWMLGfl1cgNpWSR17GPKj0G7A08w/EXEuEyZtnnrvzC4uDSA0+50XYbaTYkJvzSbVeA5GGkXHa9/un+PUmBZ3xPnL4MZo860We+1oyKO+dI4npRdTy+TxKyVKk64iQEV9QxfBpvS3bvQdSNWgDgrgh6IDfIOfE27hu/99BWeEcqT5jMKUOv4Rg5gRGM73C9Z03BvgeRs5ApHrQg8j65R5900VmO8uotu2xfPPXNz6StPOwJr4Uq+GjUNLYHFrCdZ0rogZrZY+WVJVcDsybAhPSceZzXfsLHtV+70p16R0I5nll2C4kPJPrOz5S/B4idNWQRAJ8aQgEwVxfaBCY1ONlUfm4MOdRPOvD4QYltyucNLjYlMQSoYHQkaduQRDjtTpvoimVizQvN4Wn+hylOr+jrs5tUl3ybG5tn3Ry5UJkF5ZxTzOYDLaQFkgtWTOmhHbt+RFPZJRHv5VKi8bw8lZ3T/AIorrYOM8kSu7W8tgobHR7NC+akiVlw6i9+2dolGW1eDeNPvNcvufnjiwPu5aXsP3de2/2BQG283QhQVg7zDiH+VoYz6fiJV2fztNensVmMWpuMBCR2VqFDlJxfKWPN3Ck6/ugchjEqJ+IJIaXYZe9VA1iXs8rD/2leANIuL55g3IJjBarh6mfSPOByyCLe+Sm+7aPHniSqdHnNE4u1gxbB8JkAvG2Zhoy5lMv47j0XQzNyrcPqw6ECCuNpzFv5sT2Tg/nuHQtBmDxOVdYi7RQ3Pt1hin7Mt2QjjxQUkmOjMOeE1jGsfSGHACTt0vVoBkBUwwLRDuotqMx+tgjv+pxGqsOREyhwHP8Zydy30AQq6F7n72BaA89lMdOWi5yV7qrvtOqVaVrwL9XyTKEwWKuOz3NYk0TgX1EzsiK0BPZr2gvwTLPS/ZLn+W2SDvsx6Kx6jnC1KIMsUTfx4V2Kt3+IcwuHtFksBL4sOrUIlxNiU7JDPA9vgzfdIoH3UrdXeb8dAEeXcgcoSJk6QlqDJPZj7oVzxK4zgpth53w1DM6KR4OuXeoSntfIAyheA+LvsmftcMrW+CYpmU5uidVZROB+SvNLbqU61u3al6eFNNQHYfBmm06tQTVQG8TKuj47R3a730/Fh9WHYjD32gAcr7UlJyjeQNPuRjkfOXZh1UHwiHHEaFZysDxIMIw+LCqQLi2YyfKOjsUVpG5ij4ehB8DMFqsHiwqEMsX1odEoam46V3hGTOgXesbGJRTP0YIg4Fwah34ST1QVtgKh2L2QhRx8IwWxsthxvoUWeFTSZKLUbEDgaB+9D3uyuuUFtEEqonP9/Fyk/HRpvqYvdaaqrvhFdJcnxP0EF7nYvRxNelSsjA+kpJJ8w6j1CPvICc2jevatnh4ObtYbcaigrgYSjgW8lPc0IFaQH5NquNTKJU0V4iSzAimdorFxvKqtr0ZXk8nbEe2IuTmKluXVSOwCcWdSfxkW85TsRpyFIQ8FB9BbakvsTnrDRn1ZdS1FoaZDKRWRmnEaUvR971NguH21IeyuPTsjF4/d6xt+AgEYbC4mEI9Rj4Ro+2mGH4ZkaFqNNMBYudaFNI+Ufw+EqgwTsdri9eR0tnznrHJ/BvFkAkhKZV2mTMQo4RcnYpc/RjdbK4aAdvD3+PEJ6H62LdCti1gy6EqWH0EQfjOf2Tm5iWYm5uN26jWayBmIG51s+FgPbplQUO8H0Eto3PHr+U7t3YF5dEceW5iMf24bQFso2it7xc9o1ph+yasUm9GW3EleQViVKVm8IV4a/sWet4KZNa+STei9/DBy5mKD6JezrgvjZpnQM+8NLoykEZgug0VxVjRNVz797dpTq7vvAMxRuxbJul6A3Pm4lxGjSp+SVNUa0IONoHCRQILBeMqLWLyP7df5s+Ii+fk+/bLYMlt0Gj4mn3D1Lx5AUY+GlgEfLoFk2ZSC9K0YupaTnwScgGLtlhwIGlTttLX/Of9CAjvAH03wbRSvt/m5ihUSxWnrubEr635DvPqHXUgaSOSOLmCWtpmkiQrAcYcLk9Oy3r5Pogf4X3iWCOVxzdx4qAuwPUy2C/ucyBeg7LxuhhteWcqsYzFfoD5YP8PJb07N4GPD8o6wj/RlKs3H+0LVK/P/1z/H4WucwaS2PsDAAAAAElFTkSuQmCC";
+        return icon;
+    }
+    function setIcon03(){
+        var icon="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAABgtJREFUaAXtmWtoXEUUx/PcZE2CrdGqIUij1RSLBM3bGButtoiJSk0igkKoYj+IVrGgYKWxtaCfKopVkNaoULCJH1ptEgNCSpLmbfEBLW2axMemaq21Rsnm7e+sO8vkZvbu3SQbRHbg7pw5c87/POZx587GxERLNAPRDEQz8L/JQEFBQXpeXt6tyxlQwmKNFRYWFk1NTT0eGxu7YXp6Ohu8kzw32+Hm5uZenpaWFmuScblcky0tLX+b+kw8I4hJ0Moj0w/De3V2dnadpe+3/v7+qyw8X1NGiCA7adxo6td4h8B4RGsHJcMeARzPxukPeQoNqKcYieMGvo+FznqIUM6LbCWjlEgQkz5Fm5+wAsD5LTjxNniXaZgncfr9+Pj4g93d3b9ofBMZzN4AwsrZKeg6J86LgWCA0jenkJEdOL9bY3qgX66oqPi4trZ2RuMvhPwZpWqcPheusqM1IM4DHHCejB9JTk6uaW9vvxiOwfz8/OqZmZlPRAcMLwlJVvq0JYjKvr6+DsVzUseFEsLoZmR2KTkMHcDIg+E6r/S1uiEuLm4LeH8Kj2Cu4WlmV8vVZEKStgGUlJRkAFoHim+kMNacmpq6NSSqM4HZ3t7eDxISEnIQP+NXSWVLbmTEb3AGERNjG4DX691LAGkChvMncL6qtbVVFtmSla6urmGmYxn4p/2gq6g/LSsrc7Q+gwbA1MkHqFpAAfeSqc04/5e0F1ECwZOYaYXT0dExQvte2n/4eTmjo6PbVL9dHTQAFlsAAPA3JVN2QE76yHQbct9LQnjqdR12oB9oP63xamUKa20jaQyA4VuBtMr+VFJS0l6jdpjMtra282y71zMVV7IRNFrVCeIgvC/8/NTx8fGnrDLWtnEb5YX1AFk/LMJk6jDGHrIqRqrNzF3P6LcKPrZ/ysrKWl1fXx+YbsLXi3EEELhLCRFIs6KXo2ZnOobjJ8QWtjOHhobutrNrDADFIqXEEaFP0ctVE8BRzdbtGj2PNAaAVOA0mZ6e/u08rQgzSOCXygR0nqJNtTEAMrBShKmnm5qaxk2KkeTh9Hca/i0aPY80BoCU77QJUGDfnqcZQQY71e/AqwOifvKdZ9UYAI7LwUqKi9e6LcC/Ykv7K6dbRt/30qROskM3BoDCj34l2WbX2gFEoq+qqspFEn1HGGo1EkZTxgCIekBJc2LMUfRy1R6P51psqXfUWTu7wQII7P1koNIOIBJ9ExMTetJO2dkwBsCbUF7n6hNvY2lpaWBbtQNbqj6SVq6wmA1fK9pUGwPgTHIJxSZRACxhbGxsu0k5Ejzmfzy49ytspnCDok21MQARRHG3UiCI54J9ZPAFlUnfLs5PZUp+MfXw8PCj6KtTaFdPT8+QHV7QAFCUI8TnfmUXI3IARxOtYHxBybH4FZ7G4uJit7U/nLZ/99mh6ezXaCMZNACRZhS2UV0SmlG4kyDeFVov8NR2556cnLxO7wuX5uC2EzvZogfuaW7v6kJh2AbAyXAQoCcVCOBPMFXe8s9THxver6qfgFcpOtzaf3nwotLD7nYnn6+2AQgY3wJye/CGAsbhZwYHB48yXa4QHoYCl1nsXgsKAOcfA/cQjyxgwXyP5H0mdKgSMgABAOwlQGs1sE1MlzOsiWcxelHxkbla0U5rRnQrgX+knEevmy+2553q+yJ2IjwyMnIsMzPzPLIbeOTGQBbsfTh9G7VKRB9yrbRDFoK/MiMj4x0EZdGqt+5XzPuN4VweKMMhDYoAI7GP6SRvyTaloGVOWCFHQD7UyfoeZOUapYbHV0hEs9vtvgfn1c2E6rKtHd29CAIZW4vzRQz3aozJ3pyP88kW9DlrQLZVtlm5zV6D3DqeTdw1FVLriZug/Vp5efmehdyxOgqARVaD4/t5dMPYnVtw1KVzWCd3wGvReTpNIo4kJia+0NnZOcDbX+9yTDsKAMdvAjGo8zhyAUe/QWanbpkRi+MPDZ0l9DnkG5Dfxw5ne1CzKprajgLgVu51HJFzuRvDHvzy4ITcpnlSUlJGmLdeEzi8C+IstUy5s8gfJ9PL/o0dxLcoO5qBaAb+Cxn4B86/MNOWNGJKAAAAAElFTkSuQmCC";
+        return icon;
+    }
+    </script>
+</body>
+
+</html>

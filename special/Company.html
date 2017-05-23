@@ -1,0 +1,651 @@
+﻿
+<!DOCTYPE html>
+<html lang="zh-CN" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1,user-scalable=no,minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="grey">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="format-detection" content="telephone=no,email=no">
+    <title>车源宝</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+	<style>
+	@charset "UTF-8";
+/* CSS Document */
+body, ul, li, h1, h2, h3, h4, p, div, span, img, a, em, i, strong, b {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #F3F4F5;
+  font: 300 14px/1.5 "Pingfang SC", "Microsoft Yahei", Sans-serif;
+  color: #4A4A4A;
+}
+
+.CarResource-container {
+  background: #F3F4F5;
+}
+
+.Company {
+  background: #fff;
+  color: #2E2E2E;
+  font-size: 1.17rem;
+}
+
+.Company h3 {
+  font-weight: lighter;
+  font-size: 1.25rem;
+  padding: 1.25rem 1.25rem 0.41667rem;
+  line-height: 1.875rem;
+  height: 1.875rem;
+  margin: 0;
+}
+
+.Company .Company-address {
+  display: block;
+  padding: 0 1.25rem 0.41667rem;
+  color: #AFAFAF;
+  font-size: 1.08333rem;
+  line-height: 1.66667rem;
+  border-bottom: 1px solid #E7E7E7;
+}
+
+.Company .Company-employee {
+  padding: 0 1.33rem;
+  line-height: 3.67rem;
+  height: 3.67rem;
+  border-bottom: 1px solid #EDEDED;
+}
+
+.Company .Company-employee .Company-employeeMobile {
+  color: #787878;
+  padding: 0 0 0 0.5rem;
+}
+
+.Company .Company-employee .Company-employeeCall {
+  width: 14.58333rem;
+  white-space: nowrap;
+  float: right;
+  text-align: right;
+  color: #FF8903;
+  font-size: 1.25rem;
+  text-decoration: none;
+}
+
+.Company .Company-employee .Company-employeeCall i {
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  zoom: 1;
+  *display: inline;
+  background: transparent url("../img/icon-phone.png") no-repeat 50% 50%;
+  background-size: cover;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-right: 0.20833rem;
+}
+
+.Company .Company-moreEmployee {
+  display: block;
+  color: #626262;
+  text-align: center;
+  line-height: 2.91667rem;
+  text-decoration: none;
+  position: relative;
+}
+
+.Company .Company-moreEmployee:after {
+  display: block;
+  content: ' ';
+  width: 0;
+  border: 0.375rem solid #fff;
+  border-top-color: #373737;
+  position: absolute;
+  top: 1.3rem;
+  left: 18.5rem;
+}
+
+.Company .Company-moreEmployee.Company-moreEmployee-up:after {
+  border: 0.375rem solid #fff;
+  border-bottom-color: #373737;
+  top: 0.9rem;
+  left: 18.5rem;
+}
+
+.CarResource {
+  font-size: 0.83rem;
+  text-align: center;
+  margin: 0 0 1rem 0;
+}
+
+.CarResource .CarResource-head {
+  margin: 0;
+  font-size: 1rem;
+  color: #B4B4B4;
+  background: #F0F0F0;
+  text-align: left;
+  height: 2.5rem;
+  line-height: 2.5rem;
+  text-indent: 1.33rem;
+}
+
+.CarResource .CarResource-fixed {
+  background: #FFF3DA;
+  width: 100%;
+  left: 0;
+  top: -1px;
+  line-height: 2.5rem;
+  height: 2.5rem;
+  color: #FF8903;
+  font-size: 0.83333rem;
+}
+
+.CarResource .CarResource-fixed span {
+  display: block;
+  box-sizing: border-box;
+  border-right: 1px solid #E7E7E7;
+  float: left;
+}
+
+.CarResource .CarResource-fixed span:nth-child(1) {
+  width: 52%;
+}
+
+.CarResource .CarResource-fixed span:nth-child(2) {
+  width: 23%;
+}
+
+.CarResource .CarResource-fixed span:nth-child(3) {
+  width: 24%;
+  border-right: none;
+}
+
+.CarResource table {
+  color: #4A4A4A;
+}
+
+.CarResource table thead {
+  font-size: 0.83rem;
+  line-height: 2.5rem;
+  height: 2.5rem;
+}
+
+.CarResource table thead tr {
+  background: #FFD4BA;
+}
+
+.CarResource table thead tr th {
+  font-weight: lighter;
+  border-right: 1px solid #979797;
+}
+
+.CarResource table thead tr th:first-child, .CarResource table thead tr th:last-child {
+  border-right: none;
+}
+
+.CarResource table tbody {
+  font-size: 0.75rem;
+}
+
+.CarResource table tbody tr td {
+  padding: 0 0.4rem;
+  line-height: 1rem;
+  height: 2.5rem;
+  border-right: 1px solid #979797;
+  border-bottom: 1px solid #979797;
+}
+
+.CarResource table tbody tr td:last-child {
+  border-right: none;
+}
+
+.CarResource table tbody tr td.CarResource-tdIndex {
+  border-right: none;
+}
+
+.CarResource table tbody tr td.CarResource-red {
+  color: #D0021B;
+  font-weight: bold;
+}
+
+.btn-getMore {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  display: block;
+  margin: 2rem auto 1rem;
+  color: #fff;
+  font-size: 1rem;
+  text-align: center;
+  width: 7rem;
+  height: 2.5rem;
+  line-height: 2.5rem;
+  background: #FF5D06;
+}
+
+.btn--disabled {
+  background: #e9e9e9;
+}
+
+.fixed-wrap {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.download-tip {
+  font-size: 1rem;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  overflow: hidden;
+  padding: 0.6rem 0;
+}
+
+.download-tip .download-close {
+  float: left;
+  margin-left: 1rem;
+  padding: 0.7rem 0;
+}
+
+.download-tip .download-close img {
+  width: 1.6rem;
+}
+
+.download-tip .download-logo {
+  float: left;
+  margin-left: 0.7rem;
+}
+
+.download-tip .download-logo img {
+  display: block;
+  width: 3rem;
+}
+
+.download-tip .download-desc {
+  float: left;
+  margin-left: 1rem;
+}
+
+.download-tip .download-desc span {
+  display: block;
+  color: #fff;
+}
+
+.download-tip .download-anchor {
+  float: right;
+  margin: 0.4rem 1rem 0 0;
+  display: block;
+  width: 5.84rem;
+  height: 2.5rem;
+  background: #FF9933;
+  border-radius: 0.2rem;
+  line-height: 2.5rem;
+  text-align: center;
+  color: #fff;
+  text-decoration: none;
+}
+
+.CarResource-item {
+  padding: 0.5rem 0;
+  margin-bottom: 0.83333rem;
+  color: #373737;
+  font-size: 0.83333rem;
+  line-height: 1.25rem;
+  background: #fff;
+}
+
+.CarResource-item .CarResource-itemRow {
+  overflow: hidden;
+}
+
+.CarResource-item .CarResource-itemRow:nth-child(1) {
+  display: box;
+  /* OLD - Android 4.4- */
+  display: -webkit-box;
+  /* OLD - iOS 6-, Safari 3.1-6 */
+  display: -moz-box;
+  /* OLD - Firefox 19- (buggy but mostly works) */
+  display: -ms-flexbox;
+  /* TWEENER - IE 10 */
+  display: -webkit-flex;
+  /* NEW - Chrome */
+  display: flex;
+  /* 09版 */
+  -webkit-box-pack: flex-start;
+  /* 12版 */
+  -webkit-justify-content: flex-start;
+  -moz-justify-content: flex-start;
+  -ms-justify-content: flex-start;
+  -o-justify-content: flex-start;
+  justify-content: flex-start;
+  align-items: stretch;
+  vertical-align: middle;
+}
+
+.CarResource-item .CarResource-itemRow:nth-child(2) {
+  border-top: 1px solid #E7E7E7;
+  padding: 0.4rem 0;
+}
+
+.CarResource-item .CarResource-itemRow .CarResource-itemCol1 {
+  box-sizing: border-box;
+  border-right: 1px solid #E7E7E7;
+  padding: 0.2rem 0.4rem;
+  display: box;
+  /* OLD - Android 4.4- */
+  display: -webkit-box;
+  /* OLD - iOS 6-, Safari 3.1-6 */
+  display: -moz-box;
+  /* OLD - Firefox 19- (buggy but mostly works) */
+  display: -ms-flexbox;
+  /* TWEENER - IE 10 */
+  display: -webkit-flex;
+  /* NEW - Chrome */
+  display: flex;
+  /* 09版 */
+  -webkit-box-orient: vertical;
+  /* 12版 */
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  -o-flex-direction: column;
+  flex-direction: column;
+  /* 09版 */
+  -webkit-box-pack: center;
+  /* 12版 */
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  -o-justify-content: center;
+  justify-content: center;
+}
+
+.CarResource-item .CarResource-itemRow .CarResource-itemCol1 span {
+  word-break: break-all;
+}
+
+.CarResource-item .CarResource-itemRow .CarResource-itemCol1:nth-child(1) {
+  width: 52%;
+}
+
+.CarResource-item .CarResource-itemRow .CarResource-itemCol1:nth-child(2) {
+  width: 23%;
+}
+
+.CarResource-item .CarResource-itemRow .CarResource-itemCol1:nth-child(3) {
+  width: 24%;
+  color: #FF7200;
+  border-right: none;
+}
+
+.CarResource-item .CarResource-itemRow p {
+  padding: 0.20833rem 1.25rem;
+  margin: 0;
+  text-align: left;
+}
+
+.CarResource-item .CarResource-itemRow p strong {
+  margin-right: 0.5rem;
+}
+
+.techSupport {
+  display: block;
+  margin: 0 auto 6rem;
+  text-align: center;
+  width: 15.5rem;
+  font-size: 0.83333rem;
+  height: 1.75rem;
+  line-height: 1.75rem;
+  color: #fff;
+  -webkit-border-radius: 0.8rem;
+  -moz-border-radius: 0.8rem;
+  -ms-border-radius: 0.8rem;
+  -o-border-radius: 0.8rem;
+  border-radius: 0.8rem;
+  background: #D8D8D8;
+}
+
+.techSupport span {
+  color: #FF8903;
+}
+
+	</style>
+    <script>
+      function setFontSize (){
+        var docWidth = document.documentElement.clientWidth;
+        document.getElementsByTagName('html')[0].style.fontSize = docWidth/500*16 + 'px';
+      };
+
+      setFontSize()
+
+      window.onresize = function() {
+        setFontSize();
+      };
+    </script>
+  </head>
+  <body class="Page">
+    <div class="Company">
+      <h3 class="Company-name"></h3>
+      <span class="Company-address"></span>
+      <ul>
+        <li class="Company-employee">
+          <span class="Company-employeeName"></span>
+          <a class="Company-employeeCall" target="_blank">
+            <i></i>
+            <span class="Company-employeeCall-span"></span>
+          </a>
+        </li>
+      </ul>
+      <!-- <a href="javascript: void (0)" id="moreEmployee" class="Company-moreEmployee Company-moreEmployee-down">查看全部</a> -->
+    </div>
+    <div class="CarResource">
+      <p class="CarResource-head">车型表格</p>
+      <div class="CarResource-fixed">
+        <span>车型</span>
+        <span>颜色</span>
+        <span>价格(万元)</span>
+      </div>
+      <div id="js-tbody" class="CarResource-container">
+      </div>
+    </div>
+    <a id="getResource" class="btn-getMore btn--disabled">加载中...</a>
+    <div class="techSupport">本页面由<span>车源宝</span>提供技术支持</div>
+    <div class="fixed-wrap">
+      <div class="download-tip" style="">
+        <i class="download-close"><img src="./img/close.png"></i>
+        <span class="download-logo"><img src="./img/favicon.png"></span>
+        <div class="download-desc">
+          <span>下载车源宝APP</span>
+          <span>获取海量车源信息!</span>
+        </div>
+        <a class="download-anchor" target="_blank" onclick='window.location = "http://wap.b.kuaiqiangche.com/qrcode.html"'>立即下载</a>
+      </div>
+    </div>
+  </body>
+</html>
+<script>
+var curPage = 1, pageSize = 20;
+
+window.onload = function() {
+	// document.getElementById("moreEmployee").onclick = function(e) {
+	// 	if (this.className.indexOf('Company-moreEmployee-down') != -1) {
+	// 		this.innerHTML = '收起';
+	// 		this.className = "Company-moreEmployee Company-moreEmployee-up";
+	// 		var employeeHidden = document.getElementsByClassName('Company-employeeHidden');
+	// 		for (var i = 0; employeeHidden.length > i; i++) {
+	// 			employeeHidden[i].style.display = 'block';
+	// 		}
+	// 	}else{
+	// 		this.innerHTML = '查看全部';
+	// 		this.className = "Company-moreEmployee Company-moreEmployee-down";
+	// 		var employeeHidden = document.getElementsByClassName('Company-employeeHidden');
+	// 		for (var i = 0; employeeHidden.length > i; i++) {
+	// 			employeeHidden[i].style.display = 'none';
+	// 		}
+	// 	}
+	// };
+
+    var getResource = document.getElementById("getResource");
+
+	document.getElementsByClassName("download-close")[0].onclick = function() {
+		document.getElementsByClassName("fixed-wrap")[0].style.display = 'none';
+	};
+
+    getCarInfo();
+
+    getResource.onclick = function (){
+        if (this.className.indexOf('btn--disabled') === -1) {
+            curPage++;
+            getResource.innerText = "加载中...";
+            getResource.className = "btn-getMore btn--disabled";
+            
+            getCarInfo();
+        }
+    };
+}
+
+/**
+ * 获取HOST请求参数
+ * @returns {HOST}
+ */
+function getHost() {
+    var oldUrl = document.domain;
+    var num = oldUrl.lastIndexOf('.');
+    var newUrl = oldUrl.substring(num + 1, oldUrl.length);
+    if (newUrl == 'cc') {
+        var HOST = "https://api.cyb.kuaiqiangche.cc"; 
+    } else if (newUrl == 'com') {
+        var HOST = "https://api.cyb.kuaiqiangche.com"; 
+    } else {
+        var HOST = "https://api.cyb.kuaiqiangche.com"; 
+    }
+    return HOST;
+}
+
+var getCarInfo = function (){
+	var url = getHost() +"/event/share/html";
+    Ajax.request({  
+        url : url,  
+        data : {  
+            id: getUrlParam('id'),
+            page: curPage,
+            size: pageSize,
+            order: "updated_at"
+        },  
+        success : function(xhr) {
+            if (xhr.status === 200) {
+                var data = JSON.parse(xhr.responseText).data,
+                    CarResource_item = document.getElementsByClassName('CarResource-container')[0];
+                    carListHtml = CarResource_item.innerHTML;
+
+                document.getElementsByClassName('Company-name')[0].innerText = data.company.name;
+                document.getElementsByClassName('Company-address')[0].innerText = data.company.address;
+                document.getElementsByClassName('Company-employeeName')[0].innerText = '联系人 ' + data.user.name;
+                document.getElementsByClassName('Company-employeeCall')[0].setAttribute('href', 'tel:'+data.user.mobile);
+                document.getElementsByClassName('Company-employeeCall-span')[0].innerText = data.user.mobile;
+                
+                //
+                var carListInfo = data.car;
+
+                for (var i = 0;carListInfo.data.length > i; i++) {
+                    var carList = '<div class="CarResource-item">' +
+                                  '<div class="CarResource-itemRow">' +
+                                    '<div class="CarResource-itemCol1"><span>'+ carListInfo.data[i].type.title +'</span></div>' +
+                                    '<div class="CarResource-itemCol1">' +
+                                        '<span>外观:'+ carListInfo.data[i].out_color +' / 内饰:'+ carListInfo.data[i].in_color +'</span>' +
+                                    '</div>' +
+                                    '<div class="CarResource-itemCol1 CarResource-red">' +
+                                        '<span>'+ (carListInfo.data[i].deal_price/10000).toFixed(2) +'万</span>' +
+                                    '</div>' +
+                                  '</div>' +
+                                '</div>'
+                    carListHtml += carList;
+                }
+
+                CarResource_item.innerHTML = carListHtml;
+
+                if (Math.ceil(carListInfo.total/pageSize) <= curPage) {
+                    getResource.innerText = "全部加载完成";
+                } else{
+                    getResource.innerText = "获取更多";
+                    getResource.className = "btn-getMore";
+                }
+                
+            }
+        },  
+        error : function(xhr) {  
+              
+        }  
+    });
+};
+
+Ajax = function() {  
+    function request(opt) {  
+        function fn() {  
+        }  
+        var url = opt.url || "";  
+        var async = opt.async !== false, method = opt.method || 'GET', data = opt.data  
+                || null, success = opt.success || fn, error = opt.failure  
+                || fn;  
+        method = method.toUpperCase();  
+        if (method == 'GET' && data) {  
+            var args = "";  
+            if(typeof data == 'string'){  
+                //alert("string")  
+            args = data;  
+            }else if(typeof data == 'object'){  
+                //alert("object")  
+                var arr = new Array();  
+                for(var k in data){  
+                    var v = data[k];  
+                    arr.push(k + "=" + v);  
+                }  
+                args = arr.join("&");  
+            }  
+        url += (url.indexOf('?') == -1 ? '?' : '&') + args;  
+            data = null;  
+        }  
+        var xhr = window.XMLHttpRequest ? new XMLHttpRequest()  
+                : new ActiveXObject('Microsoft.XMLHTTP');  
+        xhr.onreadystatechange = function() {  
+            _onStateChange(xhr, success, error);  
+        };  
+        xhr.open(method, url, async);  
+        if (method == 'POST') {  
+            xhr.setRequestHeader('Content-type',  
+                    'application/x-www-form-urlencoded;');  
+        }  
+        xhr.send(data);  
+        return xhr;  
+    }  
+    function _onStateChange(xhr, success, failure) {  
+        if (xhr.readyState == 4) {  
+            var s = xhr.status;  
+            if (s >= 200 && s < 300) {  
+                success(xhr);  
+            } else {  
+                failure(xhr);  
+            }  
+        } else {  
+        }  
+    }  
+    return {  
+        request : request  
+    };  
+}();  
+
+//返回url参数
+var getUrlParam = function(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+    var r = decodeURI(window.location.search).substr(1).match(reg);  //匹配目标参数
+    if (r != null) return unescape(r[2]); return null; //返回参数值
+}
+</script>

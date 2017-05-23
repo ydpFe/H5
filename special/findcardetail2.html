@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1, minimum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="x5-page-mode" content="app">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="layoutmode" content="standard">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-title" content="">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title></title>
+    <script type="text/javascript" src="./js/access.js"></script>
+    <script type="text/javascript" src="./js/ajax.js?v=20160921"></script>
+    <script type="text/javascript" src="./js/findcardetail2.js?v=20160921"></script>
+    <style>
+        body,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        p,
+        dl,
+        dt,
+        dd,
+        ul,
+        ol,
+        li,
+        form,
+        button,
+        .peopleTitle input,
+        textarea,
+        th,
+        td {
+            margin: 0;
+            padding: 0
+        }
+        
+        body,
+        button,
+        input,
+        select,
+        textarea {}
+        
+        body {
+            font-size:0.15rem;
+            font-family: '微软雅黑', 'PingFangSC-Regular';
+            background: #f7f7f7;
+            color: #333;
+        }
+        
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        button,
+        input,
+        select,
+        textarea {
+            font-size: 100%
+        }
+        
+        table {
+            border-collapse: collapse;
+            border-spacing: 0
+        }
+        
+        ul,
+        ol {
+            list-style: none
+        }
+        
+        img {
+            border: none
+        }
+        
+        em {
+            font-style: normal
+        }
+        
+        div {
+            border: none;
+        }
+        
+        select {
+            height: 0.61rem;
+            line-height: 0.5rem;
+            padding: 0.055rem 0;
+            margin: 0
+        }
+        
+        a {
+            text-decoration: none;
+            color: #333
+        }
+        
+        img {
+            width: 100%;
+            height: auto;
+            border: none;
+        }
+        
+        span {
+            vertical-align: bottom;
+        }
+        
+        .my-group {
+            margin-bottom: 0.15rem;
+            background: #fff;
+            overflow: auto;
+            zoom: 1;
+        }
+        
+        .carhead {
+            padding: 0.14rem 0 0 0.16rem;
+            height:0.64rem;
+        }
+        
+        .icon {
+            width:0.19rem;
+            height:0.19rem;
+        }
+        
+        .carText {
+            line-height:0.21rem;
+            height:0.21rem;
+            vertical-align:bottom;
+        }
+        
+        .carTextBox {
+            height: 0.21rem;
+        }
+        
+        
+        .floatLeft {
+            float: left;
+        }
+        
+        .carName {
+            margin-left: 0.03rem;
+            font-weight: bold;
+        }
+        
+        .marginTop-4 {
+            margin-top: 0.10rem;
+        }
+        
+        .borderBottom {
+            border-bottom: #f0f0f0 1px solid;
+        }
+        
+        .borderTop {
+            border-top: #f0f0f0 1px solid;
+        }
+        
+        .carMessage {
+            height:0.44rem;
+            line-height: 0.44rem;
+        }
+        
+        .carLeft {
+            width: 1.02rem;
+            margin-left: 0.16rem;
+        }
+        
+        .fontOrange {
+            color: #FF7206;
+        }
+        
+        .font999 {
+            color: #999;
+        }
+        
+        .remark {
+            width:2.25rem;
+            word-wrap:break-word;
+        }
+        
+        .remarkMessage {
+            padding: 0.11rem 0 0.11rem 0;
+            height: auto;
+            overflow: auto;
+            zoom: 1;
+        }
+        
+        .bidBox {
+            float: right;
+            margin-right: 0.16rem;
+        }
+        
+        .idBox {
+            height: 0.40rem;
+            line-height: 0.40rem;
+            padding-left: 0.17rem;
+        }
+        
+        .findText {
+            height: 0.21rem;
+        }
+        
+        .findId {
+            height: 0.21rem;
+        }
+        
+        .peopleTitle {
+            margin: 0 0 0.04rem 0.16rem;
+            font-size:0.13rem;
+        }
+        
+        .bidPeople {
+            padding-left:0.16rem;
+            height:0.44rem;
+            line-height: 0.44rem;
+            overflow: auto;
+            zoom: 1;
+        }
+        
+        .bidSuccess {
+            margin-left: 0.06rem;
+        }
+        
+        .surPlusTime {
+            float: right;
+            margin-right: 0.16rem;
+            font-size:0.14rem;
+            height: 0.21rem;
+        }
+        
+        .fontSize-14 {
+            font-size: 0.14rem;
+        }
+        
+        #footerButton {
+            width: 100%;
+            height:0.72rem;
+            position: fixed;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+        }
+        
+        .logoMessgae {
+            width: 40%;
+            margin: .036rem 0 0 .09rem;
+            display: inline;
+        }
+        
+        .uploadButton {
+            width: 40%;
+            float: right;
+            margin: 0.162rem 0.18rem 0 0;
+            display: inline;
+        }
+        
+        
+        #warp {
+            margin-bottom:0.86rem;
+        }
+
+    </style>
+</head>
+
+<body id="body">
+    <div id="warp">
+        <div class="my-group borderTop">
+            <div class="idBox borderBottom"><span class="font999 findText">寻车编号 :</span><span class="font999 findId" id="fc_no"></span><span class="surPlusTime"
+                    id="rest_time"></span></div>
+            <div class="carhead borderBottom">
+                <div class="carTextBox">
+                    <div class="icon floatLeft"><img src="img/search_car_bidding.png?v=20160921" class="icon" /></div>
+                    <div class="carText floatLeft carName" id="brand"></div>
+                    <div class="carText fontOrange bidBox" id="status"></div>
+                </div>
+                <div class="carText marginTop-4 floatLeft fontSize-14" id="type"></div>
+                <div class="carText marginTop-4 font999 bidBox fontSize-14" id="market_price"></div>
+            </div>
+        </div>
+        <div class="my-group borderTop">
+            <div class="carMessage borderBottom">
+                <div class="carLeft floatLeft font999">
+                    外观/内饰
+                </div>
+                <div class="floatLeft" id="out_color">
+                </div>
+            </div>
+            <div class="carMessage borderBottom">
+                <div class="carLeft floatLeft font999">
+                    期望行情
+                </div>
+                <div class="floatLeft" id="discount_type">
+
+                </div>
+            </div>
+            <div class="carMessage borderBottom">
+                <div class="carLeft floatLeft font999">
+                    期望价格
+                </div>
+                <div class="floatLeft fontOrange" id="deal_price">
+                </div>
+            </div>
+        </div>
+        <div class="my-group borderTop">
+            <div class="carMessage borderBottom">
+                <div class="carLeft floatLeft font999">
+                    车辆状态
+                </div>
+                <div class="floatLeft" id="car_type">
+
+                </div>
+            </div>
+            <div class="carMessage borderBottom">
+                <div class="carLeft floatLeft font999">
+                    提车时间
+                </div>
+                <div class="floatLeft" id="put_car_time">
+
+                </div>
+            </div>
+            <div class="carMessage borderBottom">
+                <div class="carLeft floatLeft font999">
+                    上牌地区
+                </div>
+                <div class="floatLeft" id="oncard_province">
+
+                </div>
+            </div>
+            <div class="carMessage borderBottom">
+                <div class="carLeft floatLeft font999">
+                    接受自提距离
+                </div>
+                <div class="floatLeft" id="access_distance">
+
+                </div>
+            </div>
+            <div class="carMessage borderBottom">
+                <div class="carLeft floatLeft font999">
+                    发布有效期
+                </div>
+                <div class="floatLeft" id="valid">
+
+                </div>
+            </div>
+        </div>
+        <div class="my-group borderTop">
+            <div class="carMessage borderBottom">
+                <div class="carLeft floatLeft font999">
+                    票据来源
+                </div>
+                <div class="floatLeft" id="invoice_type2">
+
+                </div>
+            </div>
+            <div class="carMessage borderBottom">
+                <div class="carLeft floatLeft font999">
+                    开票方式
+                </div>
+                <div class="floatLeft" id="invoice_type1">
+
+                </div>
+            </div>
+            <div class="carMessage borderBottom">
+                <div class="carLeft floatLeft font999">
+                    生产日期
+                </div>
+                <div class="floatLeft" id="production_date">
+
+                </div>
+            </div>
+            <div class="carMessage borderBottom">
+                <div class="carLeft floatLeft font999">
+                    手续情况
+                </div>
+                <div class="floatLeft" id="procedure">
+
+                </div>
+            </div>
+            <div class="remarkMessage borderBottom">
+                <div class="carLeft floatLeft font999">
+                    备注
+                </div>
+                <div class="remark floatLeft" id="remark">
+
+                </div>
+            </div>
+        </div>
+        <div id="peopleMessage">
+
+        </div>
+        <footer id="footerButton">
+            <img src="img/logoMessgae.png?v=20160921" class="logoMessgae">
+            <img src="img/uploadButton.png?v=20160921" class="uploadButton" onclick="startApp()">
+        </footer>
+    </div>
+</body>
+</html>

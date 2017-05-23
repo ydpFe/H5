@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1, minimum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="x5-page-mode" content="app">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="layoutmode" content="standard">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-title" content="">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>车辆详情</title>
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <script type="text/javascript">
+        /**
+         * 计算根元素大小
+         */
+        var deviceWidth = document.documentElement.clientWidth;
+        document.documentElement.style.fontSize = deviceWidth / 3.75 + 'px';
+        window.onresize = function() {
+            var deviceWidth = document.documentElement.clientWidth;
+            document.documentElement.style.fontSize = deviceWidth / 3.75 + 'px';
+        };
+    </script>
+    <style>
+        body,
+        ul,
+        ol,
+        li,
+        form,
+        button,
+        input,
+        textarea,
+        th,
+        span,
+        p,
+        td {
+            margin: 0;
+            padding: 0
+        }
+        ul,li{list-style: none;}
+        body {
+            font-size:0.15rem;
+            font-family: '微软雅黑', 'PingFang SC';
+            background: #F7F7F7;
+            color: #333;
+        }
+        .flex{
+            display: -webkit-box;  /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+            display: -moz-box;     /* 老版本语法: Firefox (buggy) */
+            display: -ms-flexbox;  /* 混合版本语法: IE 10 */
+            display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+            display: flex;         /* 新版本语法: Opera 12.1, Firefox 22+ */
+        }
+        .ellipsisObj {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .headerBox{
+            background:#FEE5D2;
+            height:0.3rem;
+            z-index: 30;
+            position: absolute;
+            width: 100%;
+        }
+        .headerTitle{
+            color: #FF7206;
+            font-size: 0.13rem;
+        }
+        .overFlow{
+            overflow: auto;
+        }
+        .headerBtn{
+            width:0.7rem;
+            height:0.2rem;
+            font-size: 0.13rem;
+            background-image: linear-gradient(-48deg, #FF7A0E 0%, #FF4E06 100%);
+            border-radius: 4px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left:0.04rem;
+        }
+        .g-c-center {
+            display: flex;
+            flex-direction: column;
+            -webkit-box-flex:1;  /* OLD - iOS 6-, Safari 3.1-6 */  
+            -moz-box-flex:1;     /* OLD - Firefox 19- */              
+            -webkit-flex: 1;      /* Chrome */  
+            -ms-flex: 1 ;          /* IE 10 */  
+            flex: 1;              /* NEW, Spec - Opera 12.1, Firefox 20+ */
+            box-flex:1;
+            align-items: center; 
+            justify-content: center;
+        }
+        .g-r-center {
+            display: -webkit-box;  /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+            display: -moz-box;     /* 老版本语法: Firefox (buggy) */
+            display: -ms-flexbox;  /* 混合版本语法: IE 10 */
+            display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+            display: flex;         /* 新版本语法: Opera 12.1, Firefox 22+ */
+
+            -webkit-box-flex:1;  /* OLD - iOS 6-, Safari 3.1-6 */  
+            -moz-box-flex:1;     /* OLD - Firefox 19- */              
+            -webkit-flex: 1;      /* Chrome */  
+            -ms-flex: 1 ;          /* IE 10 */  
+            flex: 1;              /* NEW, Spec - Opera 12.1, Firefox 20+ */
+            box-flex:1;
+
+            align-items:center;
+            -webkit-align-items:center;
+            box-align:center;
+            -moz-box-align:center;
+            -webkit-box-align:center;
+
+            -webkit-justify-content:center;
+            justify-content:center;
+            -moz-box-pack:center;
+            -webkit--moz-box-pack:center;
+            box-pack:center;
+        }
+        #center{
+            padding-top:0.3rem;
+        }
+        #swiperObj{
+            height:1.76rem;
+            background: #333;
+        }
+        .swiper-container {
+            width:100%;
+            height:1.76rem;
+        }  
+        .swiperImg{
+            width:100%;
+            display: block;
+            height:1.76rem;
+        }
+        .goodsBox{
+            background: #FFFFFF;
+            border-bottom:#EFEFEF 1px solid;
+            margin-bottom:0.1rem;
+        }
+        .goodsHead{
+            display: -webkit-box;  /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+            display: -moz-box;     /* 老版本语法: Firefox (buggy) */
+            display: -ms-flexbox;  /* 混合版本语法: IE 10 */
+            display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+            display: flex;         /* 新版本语法: Opera 12.1, Firefox 22+ */
+            height: 0.22rem;
+            margin: 0.16rem 0.16rem  0.05rem  0.16rem;
+        }
+        .goodsName{
+            width:2.3rem;
+            color: #333;
+        }
+        .goodsBtn{
+            font-size: 0.12rem;
+            background-image: linear-gradient(-90deg, #FF8624 0%, #FF5612 100%);
+            border-radius: 4px;
+            padding: 0.01rem 0.05rem;
+            height:0.18rem;
+            display: -webkit-box;  /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+            display: -moz-box;     /* 老版本语法: Firefox (buggy) */
+            display: -ms-flexbox;  /* 混合版本语法: IE 10 */
+            display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+            display: flex;         /* 新版本语法: Opera 12.1, Firefox 22+ */
+            align-items:center;
+            -webkit-align-items:center;
+            box-align:center;
+            -moz-box-align:center;
+            -webkit-box-align:center;
+            -webkit-justify-content:center;
+            justify-content:center;
+            -moz-box-pack:center;
+            -webkit--moz-box-pack:center;
+            box-pack:center;
+            color: #fff;
+            margin-left: auto;
+        }
+        .goodsDetail{
+            margin: 0 0.16rem;
+        }
+        .goodsPriceBox{
+            margin: 0.05rem 0.16rem;
+            height: 0.33rem;
+            display: -webkit-box;  /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+            display: -moz-box;     /* 老版本语法: Firefox (buggy) */
+            display: -ms-flexbox;  /* 混合版本语法: IE 10 */
+            display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+            display: flex;         /* 新版本语法: Opera 12.1, Firefox 22+ */
+            
+            -webkit-box-flex:1;  /* OLD - iOS 6-, Safari 3.1-6 */  
+            -moz-box-flex:1;     /* OLD - Firefox 19- */              
+            -webkit-flex: 1;      /* Chrome */  
+            -ms-flex: 1 ;          /* IE 10 */  
+            flex: 1;              /* NEW, Spec - Opera 12.1, Firefox 20+ */
+            box-flex:1;
+
+            align-items:center;
+            -webkit-align-items:center;
+            box-align:center;
+            -moz-box-align:center;
+            -webkit-box-align:center;
+        }
+        .goodsPrice{
+            font-size: 0.24rem;
+            color: #FF7206;
+        }
+        .goodsGuide{
+            font-size: 0.13rem;
+            color: #5F5F5F;
+            margin-left:0.08rem;
+        }
+        .goodsTime{
+            font-size: 0.13rem;
+            color: #999999;
+            margin: 0 0.16rem 0.095rem 0.16rem;
+        }
+        .goodsOtherBox{
+            background: #fff;
+            border-top:#EFEFEF 1px solid;
+            margin-bottom: 0.1rem;
+        }
+        .goodsOtherBox li{
+            height: 0.44rem;
+            display: -webkit-box;  /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+            display: -moz-box;     /* 老版本语法: Firefox (buggy) */
+            display: -ms-flexbox;  /* 混合版本语法: IE 10 */
+            display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+            display: flex;         /* 新版本语法: Opera 12.1, Firefox 22+ */
+            -webkit-box-flex:1;  /* OLD - iOS 6-, Safari 3.1-6 */  
+            -moz-box-flex:1;     /* OLD - Firefox 19- */              
+            -webkit-flex: 1;      /* Chrome */  
+            -ms-flex: 1 ;          /* IE 10 */  
+            flex: 1;              /* NEW, Spec - Opera 12.1, Firefox 20+ */
+            box-flex:1;
+            align-items:center;
+            -webkit-align-items:center;
+            box-align:center;
+            -moz-box-align:center;
+            -webkit-box-align:center;
+            border-bottom:#EFEFEF 1px solid;
+            font-size:0.14rem;
+            padding:0 0.16rem;
+        }
+        .goodsOtherMsg{
+            border-top:#EFEFEF 1px solid;
+            background: #fff;
+            padding:0 0.16rem;
+        }
+        .color_999{
+            color: #999;
+            width: 1rem;
+        }
+        .color_ff7206{
+            color: #ff7206;
+        }
+        .others{
+            color: #999;
+            font-size:0.14rem;
+            height: 0.4rem;
+            display: -webkit-box;  /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+            display: -moz-box;     /* 老版本语法: Firefox (buggy) */
+            display: -ms-flexbox;  /* 混合版本语法: IE 10 */
+            display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+            display: flex;         /* 新版本语法: Opera 12.1, Firefox 22+ */
+            -webkit-box-flex:1;  /* OLD - iOS 6-, Safari 3.1-6 */  
+            -moz-box-flex:1;     /* OLD - Firefox 19- */              
+            -webkit-flex: 1;      /* Chrome */  
+            -ms-flex: 1 ;          /* IE 10 */  
+            flex: 1;              /* NEW, Spec - Opera 12.1, Firefox 20+ */
+            box-flex:1;
+            align-items:center;
+            -webkit-align-items:center;
+            box-align:center;
+            -moz-box-align:center;
+            -webkit-box-align:center;
+        }
+        .othersMsg{
+            display: -webkit-box;  /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+            display: -moz-box;     /* 老版本语法: Firefox (buggy) */
+            display: -ms-flexbox;  /* 混合版本语法: IE 10 */
+            display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+            display: flex;         /* 新版本语法: Opera 12.1, Firefox 22+ */
+            -webkit-flex-wrap:wrap;
+            -webkit-box-lines:multiple;
+            -moz-flex-wrap:wrap;
+            flex-wrap:wrap;
+            -webkit-justify-content:space-between;
+            justify-content:space-between;
+            -moz-box-pack:space-between;
+            -webkit--moz-box-pack:space-between;
+            box-pack:space-between;
+        }
+        .othersMsg div{
+            background: #FFFFFF;
+            border: 1px solid #EDEDED;
+            border-radius: 100px;
+            padding: 0.05rem 0.08rem;
+            margin-bottom:0.12rem;
+        }
+        #popup {
+            background: #000;
+            opacity: 0.8;
+            z-index: 20;
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100vw;
+            height: 100vh;
+            display: none;
+        }
+        .headPortrait{
+            width:1rem;
+            height:1rem;
+            padding-top: 0.62rem;
+            display: -webkit-box;  /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+            display: -moz-box;     /* 老版本语法: Firefox (buggy) */
+            display: -ms-flexbox;  /* 混合版本语法: IE 10 */
+            display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+            display: flex;         /* 新版本语法: Opera 12.1, Firefox 22+ */
+            /*justify-content:center;*/
+            position: relative;
+        }
+        .headPortrait li{
+            width:0.6rem;
+            height:1rem;
+            position: absolute;
+            z-index: 30;
+        }
+        .headPortrait li img{
+            width:0.6rem;
+            height: 0.6rem;
+            border-radius:0.6rem;
+        }
+        .headPortrait li .name{
+            width:0.6rem;
+            height: 0.2rem;
+            display: -webkit-box;  /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+            display: -moz-box;     /* 老版本语法: Firefox (buggy) */
+            display: -ms-flexbox;  /* 混合版本语法: IE 10 */
+            display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+            display: flex;         /* 新版本语法: Opera 12.1, Firefox 22+ */
+            -webkit-justify-content:center;
+            justify-content:center;
+            -moz-box-pack:center;
+            -webkit--moz-box-pack:center;
+            box-pack:center;
+            color:#fff;
+        }
+        .popupText{
+            color:#fff;
+            margin: 0.13rem 0.2rem 0 0.2rem;
+        }
+        .popupBtn{
+            background: #FF7206;
+            border-radius: 0.04rem;
+            width: 1.4rem;
+            height: 0.4rem;
+            color:#fff;
+            display: -webkit-box;  /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+            display: -moz-box;     /* 老版本语法: Firefox (buggy) */
+            display: -ms-flexbox;  /* 混合版本语法: IE 10 */
+            display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+            display: flex;         /* 新版本语法: Opera 12.1, Firefox 22+ */
+            align-items:center;
+            -webkit-align-items:center;
+            box-align:center;
+            -moz-box-align:center;
+            -webkit-box-align:center;
+            -webkit-justify-content:center;
+            justify-content:center;
+            -moz-box-pack:center;
+            -webkit--moz-box-pack:center;
+            box-pack:center;
+            margin: 0 auto;
+            margin-top:0.3rem;
+            z-index:25;
+        }
+        .setHeadPortrait{
+            display: -webkit-box;  /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+            display: -moz-box;     /* 老版本语法: Firefox (buggy) */
+            display: -ms-flexbox;  /* 混合版本语法: IE 10 */
+            display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+            display: flex;         /* 新版本语法: Opera 12.1, Firefox 22+ */
+            -webkit-box-flex:1;  /* OLD - iOS 6-, Safari 3.1-6 */  
+            -moz-box-flex:1;     /* OLD - Firefox 19- */              
+            -webkit-flex: 1;      /* Chrome */  
+            -ms-flex: 1 ;          /* IE 10 */  
+            flex: 1;              /* NEW, Spec - Opera 12.1, Firefox 20+ */
+            box-flex:1;
+            align-items:center;
+            -webkit-align-items:center;
+            box-align:center;
+            -moz-box-align:center;
+            -webkit-box-align:center;
+            -webkit-justify-content:center;
+            justify-content:center;
+            -moz-box-pack:center;
+            -webkit--moz-box-pack:center;
+            box-pack:center;
+        }
+        .swiperRel{
+            position: relative;
+        }
+        .icon{
+            position: absolute;
+            background: rgba(155,154,155,0.60);
+            border-radius: 100px;
+            width: 0.25rem;
+            height: 0.25rem;
+            bottom: 0;
+            right: 0;
+            z-index: 90;
+            color: #fff;
+            font-size: 0.12rem;
+            display: -webkit-box;  /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+            display: -moz-box;     /* 老版本语法: Firefox (buggy) */
+            display: -ms-flexbox;  /* 混合版本语法: IE 10 */
+            display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+            display: flex;         /* 新版本语法: Opera 12.1, Firefox 22+ */
+            -webkit-box-flex:1;  /* OLD - iOS 6-, Safari 3.1-6 */  
+            -moz-box-flex:1;     /* OLD - Firefox 19- */              
+            -webkit-flex: 1;      /* Chrome */  
+            -ms-flex: 1 ;          /* IE 10 */  
+            flex: 1;              /* NEW, Spec - Opera 12.1, Firefox 20+ */
+            box-flex:1;
+            align-items:center;
+            -webkit-align-items:center;
+            box-align:center;
+            -moz-box-align:center;
+            -webkit-box-align:center;
+            -webkit-justify-content:center;
+            justify-content:center;
+            -moz-box-pack:center;
+            -webkit--moz-box-pack:center;
+            box-pack:center;
+            margin:0 0.17rem 0.1rem 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="warp">
+        <header class="headerBox g-r-center">
+            <div class="headerTitle">该车源近三日内被<span id="seePeopleNum"></span>人查看过，点击立即</div>
+            <div class="headerBtn" id="clickBtn">联系买家></div>
+        </header>
+        <div id="center">
+            <!--轮播-->
+            <div class="swiper-container swiperRel" id="swiperObj">
+                <div class="swiper-wrapper" id="swiperBanner"></div>
+
+                <div class="icon" id="icon"></div>
+                <!-- 如果需要滚动条 -->
+                <div class="swiper-scrollbar"></div>
+            </div>
+            <!--轮播 end-->
+            <!-- goods msg-->
+            <div class="goodsBox overFlow">
+                <div class="goodsHead">
+                    <div class="goodsName ellipsisObj" id="carName"></div>
+                    <div class="goodsBtn">实名未认证</div>
+                </div>
+                <div class="goodsDetail ellipsisObj" id="carMsg"></div>
+                <div class="goodsPriceBox">
+                    <div class="goodsPrice" id="carPrice"></div>
+                    <div class="goodsGuide" id="marketPrice"></div>
+                </div>
+                <div class="goodsTime" id="buildTime"></div>
+            </div>
+            <!-- goods detail msg-->
+            <ul class="goodsOtherBox">
+                <li>
+                    <span class="color_999">外观/内饰</span>
+                    <span id="outAndIn"></span>
+                </li>
+                <li>
+                    <span class="color_999">车源所在地</span>
+                    <span id="carAddress"></span>
+                </li>
+                <li>
+                    <span class="color_999">手续情况</span>
+                    <span id="procedure"></span>
+                </li>
+                <li>
+                    <span class="color_999">车源数量</span>
+                    <span id="carNum"></span>
+                </li>
+            </ul>
+            <!-- goods others msg-->
+            <div class="goodsOtherMsg">
+                <div class="others">其他信息</div>
+                <div class="othersMsg" id="carOthers">
+                </div>
+            </div>
+
+        </div>
+        <!--弹窗层-->
+        <div id="popup">
+
+            <div class="setHeadPortrait">
+                <ul class="headPortrait" id="headPortrait">
+                </ul>
+            </div>
+
+            <div class="popupText">在<span class="color_ff7206">车源宝</span>中实名认证就可查看买家信息，确保交易真实可靠。</div>
+            <div class="popupBtn" id="popupBtn">立即下载车源宝</div>
+        </div>
+    </div>
+    <script src="js/ajax.js"></script>
+    <script src="js/swiper.min.js"></script>
+    <script src="js/clipboard.min.js"></script>
+    <script>
+        window.onload=function(){
+            //页面展示
+            var showPage=function(){
+                var seePeopleNum=document.getElementById("seePeopleNum");
+                var swiperBanner=document.getElementById("swiperBanner");
+                var carName=document.getElementById("carName");
+                var carMsg=document.getElementById("carMsg");
+                var carPrice=document.getElementById("carPrice");
+                var marketPrice=document.getElementById("marketPrice");
+                var buildTime=document.getElementById("buildTime");
+                var outAndIn=document.getElementById("outAndIn");
+                var carAddress=document.getElementById("carAddress");
+                var procedure=document.getElementById("procedure");
+                var carNum=document.getElementById("carNum");
+                var carOthers=document.getElementById("carOthers");
+                var car_no=getFinal();
+                ajax({
+                    type: "GET",
+                    url: getHOST() + "/car/detail_for_h5?car_no="+car_no.car_no,
+                    dataType: "json",
+                    data: {},
+                    success: function (data) {
+                        if(data.code==0){
+                            var datas=data.data;
+                            //查看人数
+                            seePeopleNum.innerHTML=datas.view_num;
+                            //渲染车辆图片
+                            if(datas.car_image.length!=0){
+                                var obj=datas.car_image;
+                                for(var i=0;i<obj.length;i++){
+                                    var html="<div class='swiper-slide'>\
+                                        <img src='"+obj[i]+"' class='swiperImg'/>\
+                                    </div>";
+                                    swiperBanner.innerHTML+=html;
+                                }
+                                setSwiper(obj.length);
+                            }
+                            //汽车名称
+                            carName.innerHTML=datas.brand_title+" "+datas.series_title;
+                            //汽车详情
+                            carMsg.innerHTML=datas.type_title;
+                            //汽车价格
+                            carPrice.innerHTML=datas.deal_price+"万";
+                            //指导价
+                            var discountObj="";
+                            if(datas.discount_type==1){
+                                discountObj="优惠"+datas.discount_value+"点";
+                            }else if(datas.discount_type==2){
+                                discountObj="优惠"+datas.discount_value+"万";
+                            }else if(datas.discount_type==3){
+                                discountObj="加价"+datas.discount_value+"万";
+                            }else if(datas.discount_type==4){
+                                discountObj="直接报价"+datas.discount_value+"万";
+                            }
+                            marketPrice.innerHTML="指导价:"+datas.market_price+"万/"+discountObj;
+                            //发布时间
+                            buildTime.innerHTML="发布时间:"+datas.shelves_at_date;
+                            //外观/内饰
+                            outAndIn.innerHTML=datas.out_color+"/"+datas.in_color;
+                            //车源所在地
+                            carAddress.innerHTML=datas.source_location;
+                            //手续情况
+                            var procedureObj="";
+                            if(datas.procedure==0){
+                                procedureObj="";
+                            }else if(datas.procedure==1){
+                                procedureObj="手续随车";
+                            }else if(datas.procedure==2){
+                                procedureObj="手续3天内";
+                            }else if(datas.procedure==3){
+                                procedureObj="手续一周内";
+                            }else if(datas.procedure==4){
+                                procedureObj="手续15天内";
+                            }else if(datas.procedure==5){
+                                procedureObj="手续30天内";
+                            }
+                            procedure.innerHTML=procedureObj;
+                            //车源数量
+                            carNum.innerHTML=datas.num;
+                            //其他信息-销售区域
+                            var saleRegionObj="";
+                            if(datas.sale_region==0){
+                                saleRegionObj="<div>全国</div>";
+                            }else if(datas.sale_region==1){
+                                saleRegionObj="<div>东区</div>";
+                            }else if(datas.sale_region==2){
+                                saleRegionObj="<div>南区</div>";
+                            }else if(datas.sale_region==3){
+                                saleRegionObj="<div>西区</div>";
+                            }else if(datas.sale_region==4){
+                                saleRegionObj="<div>小北</div>";
+                            }else if(datas.sale_region==5){
+                                saleRegionObj="<div>大北</div>";
+                            }else if(datas.sale_region==20){
+                                saleRegionObj="";
+                            }
+                            if(saleRegionObj!=""){
+                                carOthers.innerHTML+=saleRegionObj;
+                            }
+                            //其他信息-提车时间
+                            var putCarTimeObj="";
+                            if(datas.put_car_time==0){
+                                putCarTimeObj="<div>不限</div>";
+                            }else if(datas.put_car_time==1){
+                                putCarTimeObj="<div>3天内</div>";
+                            }else if(datas.put_car_time==2){
+                                putCarTimeObj="<div>7天内</div>";
+                            }else if(datas.put_car_time==3){
+                                putCarTimeObj="<div>15天内</div>";
+                            }else if(datas.put_car_time==4){
+                                putCarTimeObj="<div>30天内</div>";
+                            }else if(datas.put_car_time==20){
+                                putCarTimeObj="";
+                            }
+                            if(putCarTimeObj!=""){
+                                carOthers.innerHTML+=putCarTimeObj;
+                            }
+                            //票据来源
+                            var invoice_typeObj="";
+                            if(datas.invoice_type2==0){
+                                invoice_typeObj="";
+                            }else if(datas.invoice_type2==1){
+                                invoice_typeObj="<div>可店票、可汽贸票</div>";
+                            }else if(datas.invoice_type2==2){
+                                invoice_typeObj="<div>店票</div>";
+                            }else if(datas.invoice_type2==3){
+                                invoice_typeObj="<div>汽贸票</div>";
+                            }
+                            if(invoice_typeObj!=""){
+                                carOthers.innerHTML+=invoice_typeObj;
+                            }
+                            //开票方式
+                            var invoice_type1Obj="";
+                            if(datas.invoice_type1==0){
+                                invoice_type1Obj="";
+                            }else if(datas.invoice_type1==1){
+                                invoice_type1Obj="<div>可增票、可后票</div>";
+                            }else if(datas.invoice_type1==2){
+                                invoice_type1Obj="<div>增票</div>";
+                            }else if(datas.invoice_type1==3){
+                                invoice_type1Obj="<div>后票</div>";
+                            }
+                            if(invoice_typeObj!=""){
+                                carOthers.innerHTML+=invoice_type1Obj;
+                            }
+                            //生产日期
+                            var production_dateObj="";
+                            if(datas.production_date==0){
+                                production_dateObj="";
+                            }else if(datas.production_date==1){
+                                production_dateObj="<div>三个月内</div>";
+                            }else if(datas.production_date==2){
+                                production_dateObj="<div>半年内</div>";
+                            }else if(datas.production_date==3){
+                                production_dateObj="<div>一年内</div>";
+                            }else if(datas.production_date==4){
+                                production_dateObj="<div>1-3年</div>";
+                            }
+                            if(production_dateObj!=""){
+                                carOthers.innerHTML+=production_dateObj;
+                            }
+                            //来访用户头像
+                            if(datas.view_head_img.length!=0 && datas.view_head_img.length==1){
+                                var headPortrait=document.getElementById("headPortrait");
+                                var params=datas.view_head_img;
+                                for(var i=0;i<params.length;i++){
+                                    var html="<li style='left:50%;margin-left:-0.3rem;'>\
+                                        <img src='"+params[i]+"'>\
+                                        <div class='name ellipsisObj'>"+datas.view_user_name+"</div>\
+                                    </li>";
+                                    headPortrait.innerHTML=html;
+                                }
+                            }
+                            if(datas.view_head_img.length!=0 && datas.view_head_img.length>1){
+                                var headPortrait=document.getElementById("headPortrait");
+                                var params=datas.view_head_img;
+                                for(var i=0;i<params.length;i++){
+                                    if(i==0){
+                                        var html="<li>\
+                                            <img src='"+params[i]+"'>\
+                                            <div class='name ellipsisObj'>"+datas.view_user_name+"</div>\
+                                        </li>";
+                                    }else if(i==1){
+                                        var html="<li style='margin-left:0.26rem; z-index:29;'>\
+                                            <img src='"+params[i]+"'>\
+                                        </li>";
+                                    }else if(i==2){
+                                        var html="<li style='margin-left:0.52rem; z-index:28;'>\
+                                            <img src='"+params[i]+"'>\
+                                        </li>";
+                                    }
+                                    headPortrait.innerHTML+=html;
+                                }
+                            }
+                        }
+                    }
+                })//ajax end
+            };
+            //车辆详情-口令
+            var getPassword=function(){
+                var car_no=getFinal();
+                ajax({
+                    type: "GET",
+                    url: getHOST() + "/car/detail_password?car_no="+car_no.car_no,
+                    dataType: "json",
+                    data: {},
+                    success: function (data) {
+                        if(data.code==0){
+                            var datas=data.data;
+                            var system=selectSystem();
+                            var passwordObj="";
+                            if(system=="ios"){
+                                passwordObj=datas.ios;
+                            }else{
+                                passwordObj=datas.androidLink;
+                            }
+                            if(passwordObj!=""){
+                                var popupBtn=document.getElementById("popupBtn");
+                                popupBtn.setAttribute("data-clipboard-text",passwordObj);
+                                new Clipboard('.popupBtn');//调用复制插件
+                            }
+                        }
+                    }
+                })//ajax end
+            };
+            //点击弹出层
+            var showPopup=function(){
+                var clickBtn=document.getElementById("clickBtn");
+                var popup=document.getElementById("popup");
+                clickBtn.addEventListener("click",function(){
+                    popup.setAttribute("style","display:block");
+                })
+            };
+            //立即下载车源宝
+            var setBtn=function(){
+                var popupBtn=document.getElementById("popupBtn");
+                var system=selectSystem();
+                popupBtn.addEventListener("click",function(){
+                    if(system=="android"){
+                         window.location.href ="http://a.app.qq.com/o/simple.jsp?pkgname=com.kqc.b2b";
+                    }else{
+                         window.location.href = "https://itunes.apple.com/cn/app/id1071024901";;
+                    }
+                })
+            };
+            //点击区域取消弹出层
+            var delPopup=function(){
+                var popup=document.getElementById("popup");
+                popup.addEventListener("click",function(){
+                    popup.setAttribute("style","display:none");
+                })
+            };
+            //swiper设置
+            var setSwiper=function(data){
+                 var icon=document.getElementById("icon");
+                 icon.innerHTML="1/"+data;
+                 new Swiper ('.swiper-container', {
+                    direction: 'horizontal',//横向
+                    // 如果需要滚动条
+                    scrollbar: '.swiper-scrollbar',
+                    onTransitionStart: function(swiper){
+                        var id=parseInt(swiper.activeIndex)+1;
+                        icon.innerHTML=id+"/"+data;
+                    }
+                })      
+            };
+            //init
+            (init=function(){
+                    showPopup();
+                    setBtn();
+                    delPopup();
+                    showPage();
+                    getPassword();
+                }
+            ())
+    }
+    /**
+     * 获取HOST请求参数
+     * @returns {HOST}
+     */
+    function getHOST() {
+        var oldUrl = document.domain;
+        var num = oldUrl.lastIndexOf('.');
+        var newUrl = oldUrl.substring(num + 1, oldUrl.length);
+        if (newUrl == 'cc') {
+            var HOST = "https://api.cyb.kuaiqiangche.cc";
+        } else if (newUrl == 'com') {
+            var HOST = "https://api.cyb.kuaiqiangche.com";
+        } else {
+            var HOST = "https://dev.cyb.kuaiqiangche.cc";
+        }
+        return HOST;
+    }
+    /**
+     * 获取到传参的参数例如?id=1212
+     * @returns {obj}
+     */
+    var getFinal = function () {
+        var oldUrl = window.location.href;
+        var arr = (oldUrl.substring(oldUrl.lastIndexOf('?') + 1, oldUrl.length)).split('&');
+        // alert(arr)
+        var obj = {};
+        for (var i = 0; i < arr.length; i++) {
+            arr[i] = arr[i].split('=');
+            obj[arr[i][0]] = arr[i][1];
+        }
+
+        return obj;
+    };
+    /**
+     * 判断系统
+     */
+    function selectSystem(){
+        var ua = navigator.userAgent.toLowerCase();	
+        if (/iphone|ipad|ipod/.test(ua)) {
+                return "ios";		
+        } else if (/android/.test(ua)) {
+                return "android";	
+        }
+    }
+    </script>
+</body>
+
+</html>
